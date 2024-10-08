@@ -27,6 +27,18 @@ The system automatically records financial transactions such as sales, purchases
 - Accountant: Can create and edit transactions but cannot delete them.
 - Auditor: Can view all transactions.
 
+#### Feature 1b: Transaction Categorization
+
+##### Description: 
+
+Automatically categorizes transactions into predefined categories (e.g., revenue, expenses) based on rules set by the Administrator.
+
+##### User Access:
+
+- Administrator: Can set and modify categorization rules.
+2) Accountant: Can view and apply categorization rules.
+3) Auditor: Can view categorized transactions.
+
 
 
 
