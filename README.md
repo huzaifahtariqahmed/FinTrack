@@ -9,6 +9,9 @@ offering users a reliable tool to monitor and manage their accounts.
 FinTrack is an ideal solution for businesses seeking to enhance their accounting processes, improve
 financial oversight, and ensure the accuracy of their financial data.
 
+## Features
+
+### Module # 1 - Automated Transaction Recording Module
 
 --- 
 
