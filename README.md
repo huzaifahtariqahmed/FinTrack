@@ -13,6 +13,12 @@ financial oversight, and ensure the accuracy of their financial data.
 
 ### Module # 1 - Automated Transaction Recording Module
 
+This module handles the automatic recording, categorization, and updating of financial transactions.
+
+#### Feature 1a: Transaction Entry
+
+
+
 --- 
 
 ### Contributors
