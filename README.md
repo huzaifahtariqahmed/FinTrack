@@ -17,6 +17,17 @@ This module handles the automatic recording, categorization, and updating of fin
 
 #### Feature 1a: Transaction Entry
 
+##### Description: 
+
+The system automatically records financial transactions such as sales, purchases, payments, and receipts.
+
+##### User Access:
+
+- Administrator: Can view, edit, and delete all transactions.
+- Accountant: Can create and edit transactions but cannot delete them.
+- Auditor: Can view all transactions.
+
+
 
 
 --- 
