@@ -34,5 +34,5 @@ The system automatically records financial transactions such as sales, purchases
 
 ### Contributors
 - [Huzaifah Tariq Ahmed](https://github.com/huzaifahtariqahmed)
-- Daniyal Areshia
+- [Daniyal Rahim Areshia](https://github.com/Daniyal-R-A)
 - [Samiya Ali Zaidi](https://github.com/samiyaalizaidi)
