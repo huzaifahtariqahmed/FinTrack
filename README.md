@@ -23,9 +23,9 @@ The system automatically records financial transactions such as sales, purchases
 
 ##### User Access:
 
-- Administrator: Can view, edit, and delete all transactions.
-- Accountant: Can create and edit transactions but cannot delete them.
-- Auditor: Can view all transactions.
+1) Administrator: Can view, edit, and delete all transactions.
+2) Accountant: Can create and edit transactions but cannot delete them.
+3) Auditor: Can view all transactions.
 
 #### Feature 1b: Transaction Categorization
 
@@ -35,10 +35,23 @@ Automatically categorizes transactions into predefined categories (e.g., revenue
 
 ##### User Access:
 
-- Administrator: Can set and modify categorization rules.
+1) Administrator: Can set and modify categorization rules.
 2) Accountant: Can view and apply categorization rules.
 3) Auditor: Can view categorized transactions.
 
+#### Feature 1c: Account Balances Update
+
+##### Description: 
+
+The system updates account balances after each transaction is recorded.
+
+##### User Access:
+
+1) Administrator: Can view all account balances and manually adjust them if necessary.
+2) Accountant: Can view account balances but cannot adjust them.
+3) Auditor: Can view account balances and audit changes.
+
+### Module # 2 - Financial Reporting Module
 
 
 
