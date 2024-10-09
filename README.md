@@ -55,6 +55,8 @@ The system updates account balances after each transaction is recorded.
 
 ### Module # 2 - Financial Reporting Module
 
+![Screen](Images/Picture2.png)
+
 This module generates various financial reports for analysis and decision-making.
 
 #### Feature 2a: Cash Flow Statement Generation
@@ -70,6 +72,10 @@ Generates a cash flow statement detailing the inflows and outflows of cash.
 3) Auditor: Can generate and view cash flow statements for auditing purposes.
 
 ### Module # 3 - User Access Control Module
+
+![Screen](Images/Picture3.png)
+
+![Screen](Images/Picture4.png)
 
 This module manages user roles, access levels, and security protocols.
 
