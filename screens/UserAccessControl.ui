@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
+    <width>805</width>
     <height>600</height>
    </rect>
   </property>
@@ -31,15 +31,15 @@
      </font>
     </property>
     <property name="text">
-     <string>User Access Control</string>
+     <string>Users</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>180</y>
-      <width>631</width>
+      <x>20</x>
+      <y>170</y>
+      <width>761</width>
       <height>291</height>
      </rect>
     </property>
@@ -52,12 +52,17 @@
     </property>
     <column>
      <property name="text">
-      <string>Employee ID</string>
+      <string>User ID</string>
      </property>
     </column>
     <column>
      <property name="text">
       <string>Full Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>BirthDate</string>
      </property>
     </column>
     <column>
@@ -183,7 +188,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>771</width>
+     <width>805</width>
      <height>26</height>
     </rect>
    </property>
