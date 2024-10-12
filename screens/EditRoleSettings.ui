@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>586</height>
+    <width>814</width>
+    <height>576</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>50</y>
-      <width>121</width>
+      <x>40</x>
+      <y>60</y>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -31,7 +31,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Role Settings</string>
+     <string>User Role Settings</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -76,12 +76,38 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>20</x>
       <y>100</y>
-      <width>651</width>
-      <height>311</height>
+      <width>761</width>
+      <height>301</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="MinimumExpanding">
+      <horstretch>12</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>true</bool>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>49</number>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>true</bool>
+    </attribute>
     <row>
      <property name="text">
       <string/>
@@ -104,12 +130,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Role Title</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Create User</string>
+      <string>Job Title</string>
      </property>
     </column>
     <column>
@@ -119,7 +140,17 @@
     </column>
     <column>
      <property name="text">
-      <string>Delete User</string>
+      <string>Edit User</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Add Transaction</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Delete transaction</string>
      </property>
     </column>
     <item row="0" column="0">
@@ -134,15 +165,20 @@
     </item>
     <item row="0" column="2">
      <property name="text">
-      <string>No</string>
+      <string>Yes</string>
      </property>
     </item>
     <item row="0" column="3">
      <property name="text">
-      <string>Yes</string>
+      <string>No</string>
      </property>
     </item>
     <item row="0" column="4">
+     <property name="text">
+      <string>No</string>
+     </property>
+    </item>
+    <item row="0" column="5">
      <property name="text">
       <string>No</string>
      </property>
@@ -172,6 +208,11 @@
       <string>Yes</string>
      </property>
     </item>
+    <item row="1" column="5">
+     <property name="text">
+      <string>Yes</string>
+     </property>
+    </item>
     <item row="2" column="0">
      <property name="text">
       <string>3</string>
@@ -193,6 +234,11 @@
      </property>
     </item>
     <item row="2" column="4">
+     <property name="text">
+      <string>Yes</string>
+     </property>
+    </item>
+    <item row="2" column="5">
      <property name="text">
       <string>No</string>
      </property>
@@ -217,7 +263,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>814</width>
      <height>26</height>
     </rect>
    </property>
