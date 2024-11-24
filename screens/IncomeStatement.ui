@@ -63,7 +63,7 @@
      <string>Date Range:</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit">
+   <widget class="QDateEdit" name="startDate">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -98,7 +98,7 @@
      <string>to</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit_2">
+   <widget class="QDateEdit" name="endDate">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -343,7 +343,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="generateReport">
     <property name="geometry">
      <rect>
       <x>280</x>
