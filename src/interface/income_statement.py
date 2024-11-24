@@ -32,7 +32,7 @@ class IncomeStatement(QtWidgets.QMainWindow):
         self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
 
         # TODO: connect button to function
-        # self.generateReport.clicked.connect(self.generate_report)
+        self.generateReport.clicked.connect(self.generate_report)
         self.saveReport.clicked.connect(self.save_report)
 
 
