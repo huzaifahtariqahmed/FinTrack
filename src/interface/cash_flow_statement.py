@@ -20,24 +20,22 @@ else:
     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 
-
-class IncomeStatement(QtWidgets.QMainWindow):
+class CashFlowStatement(QtWidgets.QMainWindow):
     def __init__(self):
-        super(IncomeStatement, self).__init__()
+        super(CashFlowStatement, self).__init__()
 
         # load the UI file
-        uic.loadUi('../../screens/IncomeStatement.ui', self)
+        uic.loadUi('../../screens/FinancialReportingModule.ui', self)
 
-        self.tableWidget.setColumnWidth(0, 300)  # Set width for column 1
+        self.tableWidget.setColumnWidth(0, 250)  # Set width for column 1
         self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
 
         # TODO: connect button to function
-        self.generateReport.clicked.connect(self.generate_report)
+        # self.generateReport.clicked.connect(self.generate_report)
         self.saveReport.clicked.connect(self.save_report)
 
-
     def generate_report(self):
-        # Retrieve date range from date widgets
+        # Retrieve date range from date widgets~
         start_date = self.startDate.date().toString("yyyy-MM-dd")
         end_date = self.endDate.date().toString("yyyy-MM-dd")
 
@@ -46,6 +44,8 @@ class IncomeStatement(QtWidgets.QMainWindow):
         
         # Populate TreeWidget with data
         self.populate_table(data)
+
+
 
     def fetch_data(self, start_date, end_date):
         # Database connection
@@ -64,7 +64,7 @@ class IncomeStatement(QtWidgets.QMainWindow):
         conn.close()
 
         return data
-    
+
     def populate_table(self, data):
         """
         Populate the QTableWidget with data.
@@ -107,6 +107,6 @@ class IncomeStatement(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    window = IncomeStatement()
+    window = CashFlowStatement()
     window.show()
     sys.exit(app.exec())
