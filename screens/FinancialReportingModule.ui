@@ -163,211 +163,6 @@
      </date>
     </property>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>170</y>
-      <width>311</width>
-      <height>261</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>81</horstretch>
-      <verstretch>30</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="tabKeyNavigation">
-     <bool>true</bool>
-    </property>
-    <property name="showDropIndicator" stdset="0">
-     <bool>false</bool>
-    </property>
-    <property name="dragEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="dragDropOverwriteMode">
-     <bool>true</bool>
-    </property>
-    <property name="alternatingRowColors">
-     <bool>true</bool>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>29</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="textElideMode">
-     <enum>Qt::ElideNone</enum>
-    </property>
-    <property name="horizontalScrollMode">
-     <enum>QAbstractItemView::ScrollPerItem</enum>
-    </property>
-    <property name="autoExpandDelay">
-     <number>22</number>
-    </property>
-    <property name="indentation">
-     <number>10</number>
-    </property>
-    <property name="uniformRowHeights">
-     <bool>false</bool>
-    </property>
-    <property name="allColumnsShowFocus">
-     <bool>true</bool>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-    <property name="headerHidden">
-     <bool>false</bool>
-    </property>
-    <property name="expandsOnDoubleClick">
-     <bool>false</bool>
-    </property>
-    <attribute name="headerCascadingSectionResizes">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="headerDefaultSectionSize">
-     <number>230</number>
-    </attribute>
-    <attribute name="headerHighlightSections">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Source</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Amount</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <item>
-     <property name="text">
-      <string>Operations</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Net Earnings</string>
-      </property>
-      <property name="text">
-       <string>2,000,000</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Additions to Cash</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Depreciation</string>
-       </property>
-       <property name="text">
-        <string>10,000</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Decrease in Accounts Receivable</string>
-       </property>
-       <property name="text">
-        <string>15,000</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Increase in Accounts Payable</string>
-       </property>
-       <property name="text">
-        <string>15,000</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Increase in Taxes Payable</string>
-       </property>
-       <property name="text">
-        <string>2,000</string>
-       </property>
-      </item>
-     </item>
-     <item>
-      <property name="text">
-       <string>Subtractions from Cash</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Increase in Inventory</string>
-       </property>
-       <property name="text">
-        <string>30,000</string>
-       </property>
-      </item>
-     </item>
-     <item>
-      <property name="text">
-       <string>Net Cash from Operations</string>
-      </property>
-      <property name="text">
-       <string>2,012,000</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Investing</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Equipment</string>
-      </property>
-      <property name="text">
-       <string>500,000</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Financing</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Notes Payable</string>
-      </property>
-      <property name="text">
-       <string>10,000</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cash Flow for FY</string>
-     </property>
-     <property name="text">
-      <string>1,522,000</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -385,7 +180,7 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>440</y>
+      <y>450</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -393,6 +188,221 @@
     <property name="text">
      <string>Save</string>
     </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>170</y>
+      <width>311</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="rowCount">
+     <number>13</number>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>200</number>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>20</number>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>10</number>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column>
+     <property name="text">
+      <string>Description </string>
+     </property>
+     <property name="font">
+      <font>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>Operations</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>Net Earnings</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>Deprecations</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>Decrease in Accounts Receivable</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>Increase in Accounts Payable</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>Increase in Taxes Payable</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string>Increase in Inventory</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string>Net Cash from Operations</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </item>
+    <item row="8" column="0">
+     <property name="text">
+      <string>Investing</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="9" column="0">
+     <property name="text">
+      <string>Equipment</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="10" column="0">
+     <property name="text">
+      <string>Financing</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="11" column="0">
+     <property name="text">
+      <string>Notes Payable</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
+    </item>
+    <item row="12" column="0">
+     <property name="text">
+      <string>Cash Flow for FY</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <italic>true</italic>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
