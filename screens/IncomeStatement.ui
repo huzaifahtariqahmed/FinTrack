@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>403</width>
-    <height>479</height>
+    <width>424</width>
+    <height>511</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -115,234 +115,6 @@
      </date>
     </property>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>130</y>
-      <width>311</width>
-      <height>261</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>81</horstretch>
-      <verstretch>30</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="tabKeyNavigation">
-     <bool>true</bool>
-    </property>
-    <property name="showDropIndicator" stdset="0">
-     <bool>false</bool>
-    </property>
-    <property name="dragEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="dragDropOverwriteMode">
-     <bool>true</bool>
-    </property>
-    <property name="alternatingRowColors">
-     <bool>true</bool>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>29</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="textElideMode">
-     <enum>Qt::ElideNone</enum>
-    </property>
-    <property name="horizontalScrollMode">
-     <enum>QAbstractItemView::ScrollPerItem</enum>
-    </property>
-    <property name="autoExpandDelay">
-     <number>22</number>
-    </property>
-    <property name="indentation">
-     <number>10</number>
-    </property>
-    <property name="uniformRowHeights">
-     <bool>false</bool>
-    </property>
-    <property name="allColumnsShowFocus">
-     <bool>true</bool>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-    <property name="headerHidden">
-     <bool>false</bool>
-    </property>
-    <property name="expandsOnDoubleClick">
-     <bool>false</bool>
-    </property>
-    <attribute name="headerCascadingSectionResizes">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="headerDefaultSectionSize">
-     <number>230</number>
-    </attribute>
-    <attribute name="headerHighlightSections">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string>Description</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Amount</string>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <item>
-     <property name="text">
-      <string>Net Sales</string>
-     </property>
-     <property name="text">
-      <string>4,358,100</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cost of Sales</string>
-     </property>
-     <property name="text">
-      <string>2,738,714</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Gross Profit</string>
-      </property>
-      <property name="text">
-       <string>1,619,386</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Selling and Operating Expenses</string>
-     </property>
-     <property name="text">
-      <string>560,430</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>General and Administrative Expenses</string>
-     </property>
-     <property name="text">
-      <string>293,729</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Total Operating Expenses</string>
-      </property>
-      <property name="text">
-       <string>854,159</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Operating Income</string>
-      </property>
-      <property name="text">
-       <string>765,227</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Other Income</string>
-     </property>
-     <property name="text">
-      <string>960</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Gain on Financial Instruments</string>
-     </property>
-     <property name="text">
-      <string>5,513</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Gain on Foreign Currency</string>
-     </property>
-     <property name="text">
-      <string>(12,649)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Interest Expense</string>
-     </property>
-     <property name="text">
-      <string>(18,177)</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>Income Before Taxes</string>
-      </property>
-      <property name="text">
-       <string>740,874</string>
-      </property>
-     </item>
-    </item>
-    <item>
-     <property name="text">
-      <string>Income Tax Expense</string>
-     </property>
-     <property name="text">
-      <string>257,642</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Net Income</string>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="text">
-      <string>483,232</string>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="generateReport">
     <property name="geometry">
      <rect>
@@ -360,7 +132,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>400</y>
+      <y>440</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -369,13 +141,248 @@
      <string>Save</string>
     </property>
    </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>311</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+      <horstretch>20</horstretch>
+      <verstretch>20</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>false</bool>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="rowCount">
+     <number>14</number>
+    </property>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>159</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>34</number>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>16</number>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column>
+     <property name="text">
+      <string>Description</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>158</red>
+       <green>210</green>
+       <blue>255</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="background">
+      <color>
+       <red>158</red>
+       <green>210</green>
+       <blue>255</blue>
+      </color>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>Cost of Sales</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>Net Sales</string>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>Gross Profit</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>Selling and Operating Expenses</string>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>General and Admninstrative Expenses</string>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>Total Operating Expenses</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string>Operating Income</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string>Other Income</string>
+     </property>
+    </item>
+    <item row="7" column="1">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="8" column="0">
+     <property name="text">
+      <string>Gain on Financial Instruments</string>
+     </property>
+    </item>
+    <item row="9" column="0">
+     <property name="text">
+      <string>Gain on Foreign Currency</string>
+     </property>
+    </item>
+    <item row="10" column="0">
+     <property name="text">
+      <string>Interest Expense</string>
+     </property>
+    </item>
+    <item row="11" column="0">
+     <property name="text">
+      <string>Income Before Taxes</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="12" column="0">
+     <property name="text">
+      <string>Income Tax Expense</string>
+     </property>
+    </item>
+    <item row="13" column="0">
+     <property name="text">
+      <string>Net Income</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>403</width>
+     <width>424</width>
      <height>18</height>
     </rect>
    </property>
