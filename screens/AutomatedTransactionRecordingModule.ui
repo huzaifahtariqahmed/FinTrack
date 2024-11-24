@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>sub_category_input</class>
+ <widget class="QMainWindow" name="sub_category_input">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1470</width>
-    <height>920</height>
+    <width>1248</width>
+    <height>823</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>200</y>
+      <x>270</x>
+      <y>80</y>
       <width>861</width>
-      <height>431</height>
+      <height>561</height>
      </rect>
     </property>
     <property name="title">
@@ -30,7 +30,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>33</y>
+       <y>153</y>
        <width>60</width>
        <height>16</height>
       </rect>
@@ -39,21 +39,21 @@
       <string>Category</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="category_input">
      <property name="geometry">
       <rect>
        <x>80</x>
-       <y>30</y>
+       <y>153</y>
        <width>256</width>
        <height>26</height>
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="view_button">
      <property name="geometry">
       <rect>
        <x>4</x>
-       <y>64</y>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -62,11 +62,11 @@
       <string>View</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="add_button">
      <property name="geometry">
       <rect>
        <x>103</x>
-       <y>64</y>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -75,11 +75,11 @@
       <string>Add</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="delete_button">
      <property name="geometry">
       <rect>
        <x>203</x>
-       <y>64</y>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -88,11 +88,11 @@
       <string>Delete</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="search_button">
      <property name="geometry">
       <rect>
        <x>733</x>
-       <y>27</y>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -101,31 +101,21 @@
       <string>Search</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="transactions_table">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>229</y>
        <width>831</width>
-       <height>311</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="rowCount">
-      <number>10</number>
+      <number>0</number>
      </property>
      <property name="columnCount">
       <number>8</number>
      </property>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
      <column>
       <property name="text">
        <string>ID</string>
@@ -166,412 +156,12 @@
        <string>Expense Type</string>
       </property>
      </column>
-     <item row="0" column="0">
-      <property name="text">
-       <string>1001</string>
-      </property>
-     </item>
-     <item row="0" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="0" column="2">
-      <property name="text">
-       <string>2024-09-01</string>
-      </property>
-     </item>
-     <item row="0" column="3">
-      <property name="text">
-       <string>Credit Card</string>
-      </property>
-     </item>
-     <item row="0" column="4">
-      <property name="text">
-       <string>Purchase</string>
-      </property>
-     </item>
-     <item row="0" column="5">
-      <property name="text">
-       <string>1023456789</string>
-      </property>
-     </item>
-     <item row="0" column="6">
-      <property name="text">
-       <string>500.00</string>
-      </property>
-     </item>
-     <item row="0" column="7">
-      <property name="text">
-       <string>Office Supplies</string>
-      </property>
-     </item>
-     <item row="1" column="0">
-      <property name="text">
-       <string>1002</string>
-      </property>
-     </item>
-     <item row="1" column="1">
-      <property name="text">
-       <string>Revenue</string>
-      </property>
-     </item>
-     <item row="1" column="2">
-      <property name="text">
-       <string>2024-09-02</string>
-      </property>
-     </item>
-     <item row="1" column="3">
-      <property name="text">
-       <string>Bank Transfer</string>
-      </property>
-     </item>
-     <item row="1" column="4">
-      <property name="text">
-       <string>Sales</string>
-      </property>
-     </item>
-     <item row="1" column="5">
-      <property name="text">
-       <string>2001122334</string>
-      </property>
-     </item>
-     <item row="1" column="6">
-      <property name="text">
-       <string>2000.00</string>
-      </property>
-     </item>
-     <item row="1" column="7">
-      <property name="text">
-       <string>Product Sales</string>
-      </property>
-     </item>
-     <item row="2" column="0">
-      <property name="text">
-       <string>1003</string>
-      </property>
-     </item>
-     <item row="2" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="2" column="2">
-      <property name="text">
-       <string>2024-09-03</string>
-      </property>
-     </item>
-     <item row="2" column="3">
-      <property name="text">
-       <string>Cash</string>
-      </property>
-     </item>
-     <item row="2" column="4">
-      <property name="text">
-       <string>Purchase</string>
-      </property>
-     </item>
-     <item row="2" column="5">
-      <property name="text">
-       <string>1023456789</string>
-      </property>
-     </item>
-     <item row="2" column="6">
-      <property name="text">
-       <string>120.50</string>
-      </property>
-     </item>
-     <item row="2" column="7">
-      <property name="text">
-       <string>Utilities (Water)</string>
-      </property>
-     </item>
-     <item row="3" column="0">
-      <property name="text">
-       <string>1004</string>
-      </property>
-     </item>
-     <item row="3" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="3" column="2">
-      <property name="text">
-       <string>2024-09-04</string>
-      </property>
-     </item>
-     <item row="3" column="3">
-      <property name="text">
-       <string>Bank Transfer</string>
-      </property>
-     </item>
-     <item row="3" column="4">
-      <property name="text">
-       <string>Payment</string>
-      </property>
-     </item>
-     <item row="3" column="5">
-      <property name="text">
-       <string>2001122334</string>
-      </property>
-     </item>
-     <item row="3" column="6">
-      <property name="text">
-       <string>1500.00</string>
-      </property>
-     </item>
-     <item row="3" column="7">
-      <property name="text">
-       <string>Equipment Purchase</string>
-      </property>
-     </item>
-     <item row="4" column="0">
-      <property name="text">
-       <string>1005</string>
-      </property>
-     </item>
-     <item row="4" column="1">
-      <property name="text">
-       <string>Revenue</string>
-      </property>
-     </item>
-     <item row="4" column="2">
-      <property name="text">
-       <string>2024-09-05</string>
-      </property>
-     </item>
-     <item row="4" column="3">
-      <property name="text">
-       <string>Check</string>
-      </property>
-     </item>
-     <item row="4" column="4">
-      <property name="text">
-       <string>Sales</string>
-      </property>
-     </item>
-     <item row="4" column="5">
-      <property name="text">
-       <string>2001122334</string>
-      </property>
-     </item>
-     <item row="4" column="6">
-      <property name="text">
-       <string>3000.00</string>
-      </property>
-     </item>
-     <item row="4" column="7">
-      <property name="text">
-       <string>Service Fees</string>
-      </property>
-     </item>
-     <item row="5" column="0">
-      <property name="text">
-       <string>1006</string>
-      </property>
-     </item>
-     <item row="5" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="5" column="2">
-      <property name="text">
-       <string>2024-09-06</string>
-      </property>
-     </item>
-     <item row="5" column="3">
-      <property name="text">
-       <string>Debit Card</string>
-      </property>
-     </item>
-     <item row="5" column="4">
-      <property name="text">
-       <string>Purchase</string>
-      </property>
-     </item>
-     <item row="5" column="5">
-      <property name="text">
-       <string>1023456789</string>
-      </property>
-     </item>
-     <item row="5" column="6">
-      <property name="text">
-       <string>80.00</string>
-      </property>
-     </item>
-     <item row="5" column="7">
-      <property name="text">
-       <string>Internet Services</string>
-      </property>
-     </item>
-     <item row="6" column="0">
-      <property name="text">
-       <string>1007</string>
-      </property>
-     </item>
-     <item row="6" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="6" column="2">
-      <property name="text">
-       <string>2024-09-07</string>
-      </property>
-     </item>
-     <item row="6" column="3">
-      <property name="text">
-       <string>Mobile Payment</string>
-      </property>
-     </item>
-     <item row="6" column="4">
-      <property name="text">
-       <string>Payment</string>
-      </property>
-     </item>
-     <item row="6" column="5">
-      <property name="text">
-       <string>3009876543</string>
-      </property>
-     </item>
-     <item row="6" column="6">
-      <property name="text">
-       <string>450.75</string>
-      </property>
-     </item>
-     <item row="6" column="7">
-      <property name="text">
-       <string>Interest Payments</string>
-      </property>
-     </item>
-     <item row="7" column="0">
-      <property name="text">
-       <string>1008</string>
-      </property>
-     </item>
-     <item row="7" column="1">
-      <property name="text">
-       <string>Revenue</string>
-      </property>
-     </item>
-     <item row="7" column="2">
-      <property name="text">
-       <string>2024-09-08</string>
-      </property>
-     </item>
-     <item row="7" column="3">
-      <property name="text">
-       <string>Bank Transfer</string>
-      </property>
-     </item>
-     <item row="7" column="4">
-      <property name="text">
-       <string>Receipts</string>
-      </property>
-     </item>
-     <item row="7" column="5">
-      <property name="text">
-       <string>2001122334</string>
-      </property>
-     </item>
-     <item row="7" column="6">
-      <property name="text">
-       <string>500.00</string>
-      </property>
-     </item>
-     <item row="7" column="7">
-      <property name="text">
-       <string>Dividends Received</string>
-      </property>
-     </item>
-     <item row="8" column="0">
-      <property name="text">
-       <string>1009</string>
-      </property>
-     </item>
-     <item row="8" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="8" column="2">
-      <property name="text">
-       <string>2024-09-09</string>
-      </property>
-     </item>
-     <item row="8" column="3">
-      <property name="text">
-       <string>Credit Card</string>
-      </property>
-     </item>
-     <item row="8" column="4">
-      <property name="text">
-       <string>Purchase</string>
-      </property>
-     </item>
-     <item row="8" column="5">
-      <property name="text">
-       <string>1023456789</string>
-      </property>
-     </item>
-     <item row="8" column="6">
-      <property name="text">
-       <string>950.00</string>
-      </property>
-     </item>
-     <item row="8" column="7">
-      <property name="text">
-       <string>Marketing Expenses</string>
-      </property>
-     </item>
-     <item row="9" column="0">
-      <property name="text">
-       <string>1010</string>
-      </property>
-     </item>
-     <item row="9" column="1">
-      <property name="text">
-       <string>Expense</string>
-      </property>
-     </item>
-     <item row="9" column="2">
-      <property name="text">
-       <string>2024-09-10</string>
-      </property>
-     </item>
-     <item row="9" column="3">
-      <property name="text">
-       <string>Cash</string>
-      </property>
-     </item>
-     <item row="9" column="4">
-      <property name="text">
-       <string>Purchase</string>
-      </property>
-     </item>
-     <item row="9" column="5">
-      <property name="text">
-       <string>1023456789</string>
-      </property>
-     </item>
-     <item row="9" column="6">
-      <property name="text">
-       <string>60.00</string>
-      </property>
-     </item>
-     <item row="9" column="7">
-      <property name="text">
-       <string>Office Snacks</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
        <x>353</x>
-       <y>33</y>
+       <y>153</y>
        <width>91</width>
        <height>16</height>
       </rect>
@@ -584,9 +174,124 @@
      <property name="geometry">
       <rect>
        <x>447</x>
-       <y>30</y>
+       <y>153</y>
        <width>278</width>
        <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>36</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="date_input">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>30</y>
+       <width>110</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Payment Method</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="payment_method_input">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>70</y>
+       <width>113</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account Number</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="account_number_input">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>100</y>
+       <width>113</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>30</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="amount_input">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>30</y>
+       <width>113</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>70</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Expense Type</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="expense_type_input">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>70</y>
+       <width>113</width>
+       <height>21</height>
       </rect>
      </property>
     </widget>
@@ -597,7 +302,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1470</width>
+     <width>1248</width>
      <height>36</height>
     </rect>
    </property>
