@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>476</width>
-    <height>532</height>
+    <width>511</width>
+    <height>586</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -29,9 +29,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>80</x>
       <y>30</y>
-      <width>171</width>
+      <width>351</width>
       <height>21</height>
      </rect>
     </property>
@@ -44,21 +44,22 @@
     <property name="text">
      <string>CASH FLOW STATEMENT</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>80</x>
       <y>70</y>
-      <width>51</width>
+      <width>61</width>
       <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
      </font>
     </property>
     <property name="text">
@@ -70,8 +71,8 @@
      <rect>
       <x>80</x>
       <y>110</y>
-      <width>61</width>
-      <height>20</height>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -86,10 +87,10 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>180</x>
       <y>70</y>
-      <width>241</width>
-      <height>16</height>
+      <width>251</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -111,14 +112,20 @@
      </property>
     </item>
    </widget>
-   <widget class="QDateEdit" name="dateEdit">
+   <widget class="QDateEdit" name="startDate">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>180</x>
       <y>110</y>
-      <width>91</width>
-      <height>22</height>
+      <width>101</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
     <property name="date">
      <date>
@@ -131,10 +138,10 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>280</x>
       <y>110</y>
-      <width>16</width>
-      <height>21</height>
+      <width>41</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -145,15 +152,24 @@
     <property name="text">
      <string>to</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit_2">
+   <widget class="QDateEdit" name="endDate">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>320</x>
       <y>110</y>
-      <width>91</width>
-      <height>22</height>
+      <width>111</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
     <property name="date">
      <date>
@@ -163,25 +179,25 @@
      </date>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="generateReport">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>140</y>
-      <width>81</width>
-      <height>20</height>
+      <x>320</x>
+      <y>160</y>
+      <width>111</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>Generate Report</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="saveReport">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>450</y>
-      <width>71</width>
+      <x>340</x>
+      <y>510</y>
+      <width>91</width>
       <height>20</height>
      </rect>
     </property>
@@ -193,9 +209,9 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>170</y>
-      <width>311</width>
-      <height>261</height>
+      <y>200</y>
+      <width>351</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
@@ -220,7 +236,7 @@
      <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderDefaultSectionSize">
-     <number>20</number>
+     <number>22</number>
     </attribute>
     <attribute name="verticalHeaderHighlightSections">
      <bool>true</bool>
@@ -410,7 +426,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>476</width>
+     <width>511</width>
      <height>18</height>
     </rect>
    </property>

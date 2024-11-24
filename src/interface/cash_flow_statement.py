@@ -28,7 +28,7 @@ class CashFlowStatement(QtWidgets.QMainWindow):
         uic.loadUi('../../screens/FinancialReportingModule.ui', self)
 
         self.tableWidget.setColumnWidth(0, 250)  # Set width for column 1
-        self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
+        self.tableWidget.setColumnWidthclear(1, 100)  # Set width for column 2
 
         # TODO: connect button to function
         # self.generateReport.clicked.connect(self.generate_report)
