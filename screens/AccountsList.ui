@@ -17,14 +17,14 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>240</y>
+      <x>560</x>
+      <y>180</y>
       <width>441</width>
       <height>341</height>
      </rect>
     </property>
     <property name="title">
-     <string>Account Information</string>
+     <string>Accounts List</string>
     </property>
     <widget class="QTableWidget" name="tableWidget">
      <property name="geometry">
