@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1470</width>
+    <height>892</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>100</x>
       <y>70</y>
       <width>861</width>
-      <height>561</height>
+      <height>601</height>
      </rect>
     </property>
     <property name="title">
@@ -30,7 +30,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>153</y>
+       <y>155</y>
        <width>60</width>
        <height>16</height>
       </rect>
@@ -171,7 +171,7 @@
      <property name="geometry">
       <rect>
        <x>353</x>
-       <y>153</y>
+       <y>155</y>
        <width>91</width>
        <height>16</height>
       </rect>
@@ -226,9 +226,9 @@
     <widget class="QDateEdit" name="date_input">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>119</x>
        <y>30</y>
-       <width>110</width>
+       <width>111</width>
        <height>24</height>
       </rect>
      </property>
@@ -260,7 +260,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>104</y>
        <width>111</width>
        <height>16</height>
       </rect>
@@ -273,7 +273,7 @@
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>100</y>
+       <y>104</y>
        <width>113</width>
        <height>21</height>
       </rect>
@@ -282,8 +282,8 @@
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>30</y>
+       <x>260</x>
+       <y>36</y>
        <width>111</width>
        <height>16</height>
       </rect>
@@ -295,9 +295,9 @@
     <widget class="QLineEdit" name="amount_input">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>30</y>
-       <width>113</width>
+       <x>370</x>
+       <y>36</y>
+       <width>131</width>
        <height>21</height>
       </rect>
      </property>
@@ -305,7 +305,7 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>260</x>
        <y>70</y>
        <width>111</width>
        <height>16</height>
@@ -320,7 +320,7 @@
       <rect>
        <x>370</x>
        <y>70</y>
-       <width>113</width>
+       <width>131</width>
        <height>21</height>
       </rect>
      </property>
@@ -338,6 +338,19 @@
       <string>Reset</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="close_button">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>556</y>
+       <width>94</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Close</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -345,7 +358,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1470</width>
      <height>36</height>
     </rect>
    </property>

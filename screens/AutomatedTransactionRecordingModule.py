@@ -47,8 +47,8 @@ class Transaction(QtWidgets.QMainWindow):
         # Connect the add function with the add button.
         self.add_button.clicked.connect(self.add)
 
-        # # Connect the close function with the close button.
-        # self.close_widget.clicked.connect(self.close)
+        # Connect the close function with the close button.
+        self.close_button.clicked.connect(self.close)
         
     def reset(self):
         # Clear all current table contents
@@ -171,6 +171,9 @@ class Transaction(QtWidgets.QMainWindow):
         else:
             # If no row is selected, show a warning message
             QMessageBox.warning(self, "No Selection", "Please select a transaction to delete.")
+            
+    def close(self):
+        sys.exit()
 
             
     def view(self):
@@ -226,27 +229,11 @@ class ViewTransaction(QtWidgets.QMainWindow):
         self.amount_input.setReadOnly(True)
         self.expense_type_input.setReadOnly(True)
         
-    def view_account_info(self):
-        if(self.transactions_table.selectedIndexes()!=0):
-            row = self.transactions_table.currentRow()
-            id = self.transactions_table.item(row,0).text()
-            category = self.transactions_table.item(row,1).text()
-            date = self.transactions_table.item(row,2).text()
-            payment_method = self.transactions_table.item(row,3).text()
-            sub_category = self.transactions_table.item(row,4).text()
-            account_number = self.transactions_table.item(row,5).text()
-            amount = self.transactions_table.item(row,6).text()
-            expense_type = self.transactions_table.item(row,7).text()
+        # Connect the close function with the close button.
+        self.close_button.clicked.connect(self.close)
         
-        # Pass all the data to view form as parameters
-        self.view_form = ViewAccountInfo(id, category, date, payment_method, sub_category, account_number, amount, expense_type)
-        self.view_form.show() 
-        
-class ViewAccountInfo(QtWidgets.QMainWindow):  
-    def __init__(self, id, category, date, payment_method, sub_category, account_number, amount, expense_type):
-        super().__init__()
-        uic.loadUi('AccountInfo.ui', self)
-
+    def close(self):
+        sys.exit()
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = Transaction() # Create an instance of our 
