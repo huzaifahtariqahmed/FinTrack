@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1248</width>
-    <height>823</height>
+    <width>1470</width>
+    <height>920</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>80</y>
+      <x>100</x>
+      <y>70</y>
       <width>861</width>
       <height>561</height>
      </rect>
@@ -48,6 +48,16 @@
        <height>26</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>Expense</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Revenue</string>
+      </property>
+     </item>
     </widget>
     <widget class="QPushButton" name="view_button">
      <property name="geometry">
@@ -170,7 +180,7 @@
       <string>Sub-Category</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="sub_category_input_2">
      <property name="geometry">
       <rect>
        <x>447</x>
@@ -179,6 +189,26 @@
        <height>26</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>Purchase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Sales</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Receipt</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Payment</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
@@ -295,6 +325,19 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="reset_button">
+     <property name="geometry">
+      <rect>
+       <x>631</x>
+       <y>192</y>
+       <width>94</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -302,7 +345,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1248</width>
+     <width>1470</width>
      <height>36</height>
     </rect>
    </property>
