@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1470</width>
-    <height>892</height>
+    <height>920</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -130,7 +130,7 @@
       <string>Expense Type</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Id_input">
+    <widget class="QLineEdit" name="id_input">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -160,7 +160,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="sub_categor_input">
+    <widget class="QLineEdit" name="sub_category_input">
      <property name="geometry">
       <rect>
        <x>140</x>

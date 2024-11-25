@@ -38,8 +38,8 @@ class Transaction(QtWidgets.QMainWindow):
         # Connect the reset function with the reset button.
         self.reset_button.clicked.connect(self.reset)
         
-        # # Connect the view function with the view button.
-        # self.view_button.clicked.connect(self.view)
+        # Connect the view function with the view button.
+        self.view_button.clicked.connect(self.view)
 
         # Connect the delete function with the delete button.
         self.delete_button.clicked.connect(self.delete)
@@ -173,90 +173,80 @@ class Transaction(QtWidgets.QMainWindow):
             QMessageBox.warning(self, "No Selection", "Please select a transaction to delete.")
 
             
-#     def view(self):
-#         if(self.booksTableWidget.selectedIndexes()!=0):
-#             row = self.booksTableWidget.currentRow()
-#             isbn = self.booksTableWidget.item(row,0).text()
-#             title = self.booksTableWidget.item(row,1).text()
-#             category = self.booksTableWidget.item(row,2).text()
-#             types = self.booksTableWidget.item(row,3).text()
-#             issued = self.booksTableWidget.item(row,4).text()
+    def view(self):
+        if(self.transactions_table.selectedIndexes()!=0):
+            row = self.transactions_table.currentRow()
+            id = self.transactions_table.item(row,0).text()
+            category = self.transactions_table.item(row,1).text()
+            date = self.transactions_table.item(row,2).text()
+            payment_method = self.transactions_table.item(row,3).text()
+            sub_category = self.transactions_table.item(row,4).text()
+            account_number = self.transactions_table.item(row,5).text()
+            amount = self.transactions_table.item(row,6).text()
+            expense_type = self.transactions_table.item(row,7).text()
         
-#         # Pass all the data to view form as parameters
-#         self.view_form = ViewBook(isbn, title, category, types, issued)
-#         self.view_form.show()     
-        
-#     def delete(self):
-#         if(self.booksTableWidget.selectedIndexes()):
-#             message = "Are you sure you want to delete this block?"
-#             dlg = QMessageBox(self)
-#             dlg.setWindowTitle("Confirmation Box")
-#             dlg.setText(message)
-#             dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-#             dlg.setIcon(QMessageBox.Icon.Critical)  
-#             # Execute the message box and check which button was clicked
-#             result = dlg.exec()
-#             if(result == QMessageBox.StandardButton.Yes):
-#                 row = self.booksTableWidget.currentRow()
-#                 for i in range(len(books)):
-#                     if(books[i][0] == self.booksTableWidget.item(row,0).text()):
-#                         row = i
-#                         break
-#                 del books[row]
-#                 self.booksTableWidget.clear()
-#                 for i in range(len(books)):
-#                     for j in range(5):
-#                         item = QtWidgets.QTableWidgetItem(books[i][j])
-#                         # Make the items non-editable
-#                         item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable) 
-#                         self.booksTableWidget.setItem(i,j,item)  
-#         else:
-#             pass    
-           
-#     def close(self):
-#         sys.exit()
+        # Pass all the data to view form as parameters
+        self.view_form = ViewTransaction(id, category, date, payment_method, sub_category, account_number, amount, expense_type)
+        self.view_form.show()     
             
 
-# class ViewBook(QtWidgets.QMainWindow):  
-#     def __init__(self, isbn, title, category, types, issued):
-#         super().__init__()
-#         uic.loadUi('ViewBook.ui', self)
+class ViewTransaction(QtWidgets.QMainWindow):  
+    def __init__(self, id, category, date, payment_method, sub_category, account_number, amount, expense_type):
+        super().__init__()
+        uic.loadUi('ViewTransaction.ui', self)
 
-#         # Receive Data from the Main Form
-#         self.isbn = isbn
-#         self.title = title
-#         self.category = category
-#         self.types = types
-#         self.issued = issued
+        # Receive Data from the Main Form
+        self.id = id
+        self.category = category
+        self.date = date
+        self.payment_method = payment_method
+        self.sub_category = sub_category
+        self.account_number = account_number
+        self.amount = amount
+        self.expense_type = expense_type
 
-#         # Set Window Title
-#         self.setWindowTitle('View Book')
+        # Set Window Title
+        self.setWindowTitle('View Transaction')
 
-#         self.isbn_widget.setText(self.isbn)
-#         self.isbn_widget.setEnabled(False)
-
-#         self.title_widget.setText(self.title)
-#         self.title_widget.setEnabled(False)
+        self.id_input.setText(self.id)
+        self.category_input.setText(self.category)
+        self.date_input.setDate(QtCore.QDate.fromString(self.date, "yyyy-MM-dd"))
+        self.payment_method_input.setText(self.payment_method)
+        self.sub_category_input.setText(self.sub_category)
+        self.account_number_input.setText(self.account_number)
+        self.amount_input.setText(self.amount)
+        self.expense_type_input.setText(self.expense_type)
         
-#         self.category_widget.setText(self.category)
-#         self.category_widget.setEnabled(False)
+        self.id_input.setReadOnly(True)
+        self.category_input.setReadOnly(True)
+        self.date_input.setReadOnly(True)
+        self.payment_method_input.setReadOnly(True)
+        self.sub_category_input.setReadOnly(True)
+        self.account_number_input.setReadOnly(True)
+        self.amount_input.setReadOnly(True)
+        self.expense_type_input.setReadOnly(True)
         
-#         if(self.types == "Reference Book"):
-#             self.ref.setChecked(True)
-#             self.ref.setEnabled(False)
-#         elif(self.types == "Text Book"):
-#             self.text.setChecked(True)
-#             self.text.setEnabled(False)
-#         else:
-#             self.journal.setChecked(True)
-#             self.journal.setEnabled(False)
-            
-#         if(self.issued == "True"):
-#             self.issued_widget.setChecked(True)
-#             self.issued_widget.setEnabled(False)
-#         else:
-#             self.issued_widget.setChecked(False)
-#             self.issued_widget.setEnabled(False)
+    def view_account_info(self):
+        if(self.transactions_table.selectedIndexes()!=0):
+            row = self.transactions_table.currentRow()
+            id = self.transactions_table.item(row,0).text()
+            category = self.transactions_table.item(row,1).text()
+            date = self.transactions_table.item(row,2).text()
+            payment_method = self.transactions_table.item(row,3).text()
+            sub_category = self.transactions_table.item(row,4).text()
+            account_number = self.transactions_table.item(row,5).text()
+            amount = self.transactions_table.item(row,6).text()
+            expense_type = self.transactions_table.item(row,7).text()
+        
+        # Pass all the data to view form as parameters
+        self.view_form = ViewAccountInfo(id, category, date, payment_method, sub_category, account_number, amount, expense_type)
+        self.view_form.show() 
+        
+class ViewAccountInfo(QtWidgets.QMainWindow):  
+    def __init__(self, id, category, date, payment_method, sub_category, account_number, amount, expense_type):
+        super().__init__()
+        uic.loadUi('AccountInfo.ui', self)
+
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = Transaction() # Create an instance of our 
