@@ -232,8 +232,8 @@ class ViewTransaction(QtWidgets.QMainWindow):
         # Connect the close function with the close button.
         self.close_button.clicked.connect(self.close)
         
-    def close(self):
-        sys.exit()
+    # def close(self):
+    #     sys.exit()
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = Transaction() # Create an instance of our 
