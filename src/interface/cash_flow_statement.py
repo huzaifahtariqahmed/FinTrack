@@ -27,6 +27,10 @@ class CashFlowStatement(QtWidgets.QMainWindow):
         # load the UI file
         uic.loadUi('../../screens/FinancialReportingModule.ui', self)
 
+        self.setWindowTitle('Cash Flow Statement')
+
+        self.source.setCurrentIndex(-1)
+
         self.tableWidget.setColumnWidth(0, 250)  # Set width for column 1
         self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
 
@@ -39,26 +43,35 @@ class CashFlowStatement(QtWidgets.QMainWindow):
         start_date = self.startDate.date().toString("yyyy-MM-dd")
         end_date = self.endDate.date().toString("yyyy-MM-dd")
 
+        selected_source = self.source.currentText()
+
         # Fetch data from database
-        data = self.fetch_data(start_date, end_date)
+        data = self.fetch_data(start_date, end_date, selected_source)
         
         # Populate TreeWidget with data
         self.populate_table(data)
 
 
-
-    def fetch_data(self, start_date, end_date):
+    def fetch_data(self, start_date, end_date, selected_source):
         # Database connection
         conn = pyodbc.connect(connection_string)
         cursor = conn.cursor()
         
         # TODO: complete the query
-        query = """
-        SELECT account_name, debit, credit 
-        FROM income_statement
-        WHERE transaction_date BETWEEN ? AND ?
-        """
-        cursor.execute(query, (start_date, end_date))
+        if not selected_source: # when no source is selected
+            query = """
+            SELECT account_name, debit, credit 
+            FROM income_statement
+            WHERE transaction_date BETWEEN ? AND ?
+            """
+            cursor.execute(query, (start_date, end_date))
+        else: # when a source is selected.
+            query = """
+            SELECT account_name, debit, credit 
+            FROM income_statement
+            WHERE transaction_date BETWEEN ? AND ?
+            """
+            cursor.execute(query, (start_date, end_date, selected_source))
         
         data = cursor.fetchall()
         conn.close()

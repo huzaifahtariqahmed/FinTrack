@@ -84,7 +84,7 @@
      <string>Date Range:</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="source">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -94,8 +94,13 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>-1</number>
+     <number>0</number>
     </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
     <item>
      <property name="text">
       <string>Operations</string>
