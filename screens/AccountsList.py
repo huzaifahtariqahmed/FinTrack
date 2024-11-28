@@ -5,14 +5,14 @@ from PyQt6.QtCore import Qt
 from PyQt6 import QtCore
 
 accounts = [
-    ["1", "1001", "John Doe", "10012345678901", "5250.00"],
-    ["2", "1002", "Jane Smith", "20023456789012", "1850.75"],
-    ["3", "1003", "Alice Johnson", "30034567890123", "12450.32"],
-    ["4", "1004", "Robert Brown", "40045678901234", "8320.45"],
-    ["5", "1005", "Emily Davis", "50056789012345", "3100.00"],
-    ["6", "1006", "Michael Wilson", "60067890123456", "25750.88"],
-    ["7", "1007", "Sarah Taylor", "70078901234567", "1500.00"],
-    ["8", "1008", "David Martin", "80089012345678", "4875.50"]
+    ["1", "John Doe", "1001", "10012345678901", "5250.00"],
+    ["2", "Jane Smith", "1002", "20023456789012", "1850.75"],
+    ["3", "Alice Johnson", "1003", "30034567890123", "12450.32"],
+    ["4", "Robert Brown", "1004", "40045678901234", "8320.45"],
+    ["5", "Emily Davis", "1005", "50056789012345", "3100.00"],
+    ["6", "Michael Wilson", "1006", "60067890123456", "25750.88"],
+    ["7", "Sarah Taylor", "1007", "70078901234567", "1500.00"],
+    ["8", "David Martin", "1008", "80089012345678", "4875.50"]
 ]
 
 class Accounts(QtWidgets.QMainWindow):
@@ -44,8 +44,8 @@ class Accounts(QtWidgets.QMainWindow):
         # Connect the delete function with the delete button.
         self.delete_button.clicked.connect(self.delete)
         
-        # # Connect the add function with the add button.
-        # self.add_button.clicked.connect(self.add)
+        # Connect the add function with the add button.
+        self.edit_button.clicked.connect(self.edit)
 
         # Connect the close function with the close button.
         self.close_button.clicked.connect(self.close)
@@ -153,6 +153,7 @@ class Accounts(QtWidgets.QMainWindow):
     #     self.expense_type_input.clear()
     #     self.account_number_input.clear()
     #     self.date_input.setDate(QtCore.QDate.currentDate())
+        
       
     def delete(self):
         # Get the selected row
@@ -174,7 +175,7 @@ class Accounts(QtWidgets.QMainWindow):
             
     def close(self):
         sys.exit()
-
+        
             
     def view(self):
         if(self.accounts_table.selectedIndexes()!=0):
@@ -189,6 +190,26 @@ class Accounts(QtWidgets.QMainWindow):
         self.view_form = ViewAccountInfo(account_id, account_title, account_number, account_balance)
         self.view_form.show()     
             
+    def edit(self):
+        if(self.accounts_table.selectedIndexes()!=0):
+            row = self.accounts_table.currentRow()
+            account_id = self.accounts_table.item(row,0).text()
+            account_title = self.accounts_table.item(row,1).text()
+            account_number = self.accounts_table.item(row,2).text()
+            account_balance = self.accounts_table.item(row,3).text()
+            
+        # Pass all the data to view form as parameters
+        self.edit_form = EditAccountInfo(account_id, account_title, account_number, account_balance, self)
+        self.edit_form.show()    
+        
+    def update_table(self):
+        # Refresh the table with updated account data
+        self.accounts_table.setRowCount(len(accounts))
+        for i, account in enumerate(accounts):
+            for j in range(5):
+                item = QtWidgets.QTableWidgetItem(account[j])
+                item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
+                self.accounts_table.setItem(i, j, item)
 
 class ViewAccountInfo(QtWidgets.QMainWindow):  
     def __init__(self, account_id, account_title, account_number, account_balance):
@@ -219,6 +240,62 @@ class ViewAccountInfo(QtWidgets.QMainWindow):
         
         # Connect the close function with the close button.
         self.close_button.clicked.connect(self.close)
+        
+class EditAccountInfo(QtWidgets.QMainWindow):  
+    def __init__(self, account_id, account_title, account_number, account_balance, parent_window):
+        super().__init__()
+        uic.loadUi('EditAccountInfo.ui', self)
+
+        # Receive Data from the Main Form
+        self.account_id = account_id
+        self.account_title = account_title
+        self.account_number = account_number
+        self.account_balance = account_balance
+        self.parent_window = parent_window  # Reference to the parent window to update the main table
+
+        # Set Window Title
+        self.setWindowTitle('Edit Account Info')
+
+        # Populate the fields with existing data
+        self.account_id_input.setText(self.account_id)
+        self.account_title_input.setText(self.account_title)
+        self.account_number_input.setText(self.account_number)
+        self.account_balance_input.setText(self.account_balance)
+
+        # Make account ID non-editable
+        self.account_id_input.setReadOnly(True)
+
+        # Connect the save button to the save function
+        self.save_button.clicked.connect(self.save_changes)
+
+        # Connect the close button to the close function
+        self.close_button.clicked.connect(self.close)
+
+    def save_changes(self):
+        # Get the updated values from the input fields
+        updated_title = self.account_title_input.text()
+        updated_number = self.account_number_input.text()
+        updated_balance = self.account_balance_input.text()
+
+        # Validate the input fields
+        if not updated_title or not updated_number or not updated_balance:
+            QtWidgets.QMessageBox.warning(self, "Input Error", "All fields must be filled.")
+            return
+
+        # Update the account data in the parent window
+        for account in accounts:
+            if account[0] == self.account_id:  # Match the account ID
+                account[1] = updated_title
+                account[2] = updated_number
+                account[3] = updated_balance
+                break
+
+        # Update the table in the parent window
+        self.parent_window.update_table()
+
+        # Show a success message and close the window
+        QtWidgets.QMessageBox.information(self, "Success", "Account information updated successfully.")
+        self.close()
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = Accounts() # Create an instance of our 
