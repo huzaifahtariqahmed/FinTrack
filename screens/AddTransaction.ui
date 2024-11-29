@@ -42,7 +42,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QDateEdit" name="date_input">
+    <widget class="QDateEdit" name="transactionDate">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -110,7 +110,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="amount_input">
+    <widget class="QLineEdit" name="lineEdit_3">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -136,7 +136,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="expense_type_input">
+    <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -145,50 +145,58 @@
        <height>26</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Interest Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Product Sales</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Office Supplies</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Utilities</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Equipment Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Service Charges</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Internet Fees</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Dividends Revenue</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Marketing Expense</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QComboBox" name="category_input">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>260</y>
-       <width>111</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>260</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Category</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>300</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Subcategory</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="payment_method_input">
+    <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -197,18 +205,48 @@
        <height>26</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Credit Card</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Debit Card</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Mobile Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Wire Transfer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Pay Order</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cheque</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cash</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QComboBox" name="sub_category_input">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>300</y>
-       <width>111</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="account_number_input">
+    <widget class="QLineEdit" name="lineEdit_2">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -218,7 +256,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="save_button">
+    <widget class="QPushButton" name="saveButton">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -231,7 +269,7 @@
       <string>Save</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="close_button">
+    <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -241,7 +279,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Close</string>
+      <string>Exit</string>
      </property>
     </widget>
    </widget>
@@ -252,7 +290,7 @@
      <x>0</x>
      <y>0</y>
      <width>1470</width>
-     <height>18</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>
