@@ -3,36 +3,37 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView , QMessageBox
 import sys
-# import pyodbc
+import pyodbc
 
 
 
-# Replace these with your own database connection details
-server = 'DESKTOP-OJMNK7F\\SQLSERVER1'
-database = 'Fintrack'  # Name of your Fintrack database
-use_windows_authentication = False  # Set to True to use Windows Authentication
-username = 'sa'  # Specify a username if not using Windows Authentication
-password = '1234'  # Specify a password if not using Windows Authentication
+# # Replace these with your own database connection details
+# server = 'DESKTOP-OJMNK7F\\SQLSERVER1'
+# database = 'Fintrack'  # Name of your Fintrack database
+# use_windows_authentication = False  # Set to True to use Windows Authentication
+# username = 'sa'  # Specify a username if not using Windows Authentication
+# password = '1234'  # Specify a password if not using Windows Authentication
 
-#  Create the connection string based on the authentication method chosen
-if use_windows_authentication:
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-else:
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+# #  Create the connection string based on the authentication method chosen
+# if use_windows_authentication:
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+# else:
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 
 
 class USER(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, connection_string):
         # Call the inherited classes __init__ method
         super(USER, self).__init__() 
 
-        self.User_DataTable()
+        self.connection_string = connection_string
+        self.User_DataTable(self.connection_string)
     
 
-    def User_DataTable(self):
+    def User_DataTable(self, connection_string):
         # Load the .ui file
-        uic.loadUi('../User_and_Roles/Project_UserAccessControl.ui', self)
+        uic.loadUi('../../User_and_Roles/Project_UserAccessControl.ui', self)
         self.setWindowTitle("User Acess Control")
 
         self.populate_users()
@@ -46,7 +47,7 @@ class USER(QtWidgets.QMainWindow):
 
     def populate_users(self):         
 
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
         cursor.execute("""select U.USER_ID, U.USER_NAME, CONVERT(DATE, U.USER_DOB) as 'Birth_Date', JR.JOB_TITLE, U.USER_EMAIL, U.USER_PASSWORD 
                         from [User] U
@@ -73,7 +74,7 @@ class USER(QtWidgets.QMainWindow):
 
     def search(self):
         search_txt = self.Search_Input.text()
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
         query = """
             SELECT U.USER_ID, U.USER_NAME, CONVERT(DATE, U.USER_DOB) AS 'Birth_Date', 
@@ -105,7 +106,7 @@ class USER(QtWidgets.QMainWindow):
 
     def populate_combobox_job_roles(self):
         # Connect to the database
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
 
         # Execute the query to fetch job roles
@@ -139,7 +140,7 @@ class USER(QtWidgets.QMainWindow):
         """
 
         # Connect to the database
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
 
         # Get JOB_ROLE_ID for the given job title
@@ -157,7 +158,7 @@ class USER(QtWidgets.QMainWindow):
 
     def add(self):
 
-        uic.loadUi('../User_and_Roles/Project_NewUser.ui', self)
+        uic.loadUi('../../User_and_Roles/Project_NewUser.ui', self)
         # Clear previous content if needed
         self.populate_combobox_job_roles()
         self.Done_Button.clicked.connect(self.Insert_User)
@@ -187,7 +188,7 @@ class USER(QtWidgets.QMainWindow):
         """
 
         # Connect to the database
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
 
         # Get JOB_ROLE_ID for the given job title
@@ -231,7 +232,7 @@ class USER(QtWidgets.QMainWindow):
 
         if response == QMessageBox.StandardButton.Yes:
             useridvalue = self.UserTable.item(self.UserTable.currentRow(), 0).text()
-            connection = pyodbc.connect(connection_string)
+            connection = pyodbc.connect(self.connection_string)
             cursor = connection.cursor()
             query = """Delete from [User] where User_id = ?"""
             cursor.execute(query, (useridvalue,))           
@@ -254,7 +255,7 @@ class USER(QtWidgets.QMainWindow):
 
             if response == QMessageBox.StandardButton.Yes:
                 JobTitlevalue = self.JobTable.item(self.JobTable.currentRow(), 0).text()
-                connection = pyodbc.connect(connection_string)
+                connection = pyodbc.connect(self.connection_string)
                 cursor = connection.cursor()
                 query = """Delete from [JobRole] where lower(JOB_TITLE) = ?"""
                 cursor.execute(query, (JobTitlevalue.lower(),))     
@@ -275,7 +276,7 @@ class USER(QtWidgets.QMainWindow):
         # Check if the input is empty
         if JobTitleValue != "":
             # Connect to the database
-            connection = pyodbc.connect(connection_string)
+            connection = pyodbc.connect(self.connection_string)
             cursor = connection.cursor()
 
             # Define the INSERT query
@@ -311,7 +312,7 @@ class USER(QtWidgets.QMainWindow):
         # Check if the input is empty
         if JobTitleValue != "":
             # Connect to the database
-            connection = pyodbc.connect(connection_string)
+            connection = pyodbc.connect(self.connection_string)
             cursor = connection.cursor()
 
             # Define the update query
@@ -333,7 +334,7 @@ class USER(QtWidgets.QMainWindow):
             self.editRoleSettings()  # return to the function again
 
     def addRole(self):
-        uic.loadUi('../User_and_Roles/Project_NewJobRole.ui', self)
+        uic.loadUi('../../User_and_Roles/Project_NewJobRole.ui', self)
         # Clear previous content if needed
         self.JobTitleValue.clear()
         self.Done_Button.clicked.connect(self.addjobtitle)
@@ -352,19 +353,19 @@ class USER(QtWidgets.QMainWindow):
         if response == QMessageBox.StandardButton.Yes:
             current_val = self.JobTable.item(self.JobTable.currentRow(), 0).text()
             # print(current_val)
-            uic.loadUi('../User_and_Roles/Project_NewJobRole.ui', self)
+            uic.loadUi('../../User_and_Roles/Project_NewJobRole.ui', self)
             self.JobTitleValue.clear()
             self.Done_Button.clicked.connect(lambda: self.editjobtitle(current_val))
             self.Cancel_Button.clicked.connect(self.editRoleSettings)
 
     def editRoleSettings(self):
         #Load the .ui file
-        uic.loadUi('../User_and_Roles/Project_EditRoleSettings.ui', self)
+        uic.loadUi('../../User_and_Roles/Project_EditRoleSettings.ui', self)
 
         self.setWindowTitle("Edit Role Settings")
 
         # Connect to the database
-        connection = pyodbc.connect(connection_string)
+        connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
 
         # Execute the query to fetch job titles
