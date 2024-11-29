@@ -35,6 +35,7 @@ class Dashboard(QtWidgets.QMainWindow):
         
         # connecting to the user's portal
         self.addUsers.clicked.connect(self.addUsersFunc)
+        self.managePermissions.clicked.connect(self.permissionsManager)
         
         # connecting to the accounts portal
         self.viewAccounts.clicked.connect(self.viewAccountsFunc)
@@ -48,9 +49,12 @@ class Dashboard(QtWidgets.QMainWindow):
         
     def addUsersFunc(self):
         print("add users button clicked")
-        # TODO: Connect Daniyal's screen here
         self.screen = USER(connection_string)
         self.screen.show()
+        
+    def permissionsManager(self):
+        print("Manage permissions")
+        # TODO: Connect permissions managing screen here
         
         
     def viewAccountsFunc(self):
@@ -59,7 +63,6 @@ class Dashboard(QtWidgets.QMainWindow):
         
     def transactions(self):
         print("transactions button pressed")
-        # TODO: transactions class connection
         self.transMod = Transaction(connection_string)
         self.transMod.show()
         
@@ -69,7 +72,8 @@ class Dashboard(QtWidgets.QMainWindow):
         self.income_statement.show()
         
     def close(self):
-        print("close")
+        print("closing the app")
+        sys.exit()
         
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
