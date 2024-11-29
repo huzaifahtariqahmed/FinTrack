@@ -4,7 +4,9 @@ from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 from Project import USER
+from AutomatedTransactionRecordingModule import Transaction
 from income_statement import IncomeStatement
+
 import pyodbc
 
 # FOR GENERATING A CONNECTION STRING
@@ -58,6 +60,8 @@ class Dashboard(QtWidgets.QMainWindow):
     def transactions(self):
         print("transactions button pressed")
         # TODO: transactions class connection
+        self.transMod = Transaction(connection_string)
+        self.transMod.show()
         
     def incomeStatement(self):
         print("income statement called")
