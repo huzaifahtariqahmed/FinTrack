@@ -3,7 +3,7 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
-import 
+from Project import USER
 # import pyodbc
 
 # # FOR GENERATING A CONNECTION STRING
@@ -46,6 +46,8 @@ class Dashboard(QtWidgets.QMainWindow):
     def addUsersFunc(self):
         print("add users button clicked")
         # TODO: Connect Daniyal's screen here
+        screen = USER()
+        screen.show()
         
         
     def viewAccountsFunc(self):
