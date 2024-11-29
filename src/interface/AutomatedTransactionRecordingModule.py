@@ -39,7 +39,7 @@ class Transaction(QtWidgets.QMainWindow):
                         inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
                         inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
                         inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
+                        left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
 
         self.transactions_table.clearContents()
         self.transactions_table.setRowCount(0)
@@ -70,7 +70,7 @@ class Transaction(QtWidgets.QMainWindow):
         self.view_button.clicked.connect(self.view)
 
         # Connect the delete function with the delete button.
-        # self.delete_button.clicked.connect(self.delete)
+        self.delete_button.clicked.connect(self.delete)
         
         # Connect the add function with the add button.
         self.add_button.clicked.connect(self.add)
@@ -90,7 +90,7 @@ class Transaction(QtWidgets.QMainWindow):
                         inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
                         inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
                         inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
+                        left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
 
         self.transactions_table.clearContents()
         self.transactions_table.setRowCount(0)
@@ -114,7 +114,7 @@ class Transaction(QtWidgets.QMainWindow):
                         inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
                         inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
                         inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
+                        left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
 
         self.transactions_table.clearContents()
         self.transactions_table.setRowCount(0)
@@ -143,7 +143,7 @@ class Transaction(QtWidgets.QMainWindow):
                         inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
                         inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
                         inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
+                        left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
                         where 
                         C.CATEGORY_NAME = ? and S.SUB_CATEGORY_NAME = ?
                         """
@@ -171,7 +171,7 @@ class Transaction(QtWidgets.QMainWindow):
       
     def add(self):
         # Pass all the data to view form as parameters
-        self.add_form = AddTransaction(self)
+        self.add_form = AddTransaction(self, self.connection_string)
         self.add_form.show()     
 
         # # Collect data from the input fields
@@ -244,27 +244,89 @@ class Transaction(QtWidgets.QMainWindow):
         # self.account_number_input.clear()
         # self.date_input.setDate(QtCore.QDate.currentDate())
       
-    # def delete(self):
-    #     # Get the selected row
-    #     selected_row = self.transactions_table.currentRow()
+    def delete(self):
+        # dig = QMessageBox(self)
+        # dig.setWindowTitle("Confirmation Box")
+        # dig.setText ("Are you sure you want to delete this transaction?")
+        # dig.setIcon(QMessageBox.Icon.Warning) 
+        # dig.setStandardButtons (QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No )
+        # response = dig.exec()
 
-    #     # Check if a row is selected
-    #     if selected_row >= 0:
-    #         # Remove the corresponding transaction from the list
-    #         del transactions[selected_row]
+        # if response == QMessageBox.StandardButton.Yes:
+        #     id = self.transaction_table.item(self.transaction_table.currentRow(), 0).text()
+        #     connection = pyodbc.connect(self.connection_string)
+        #     cursor = connection.cursor()
+        #     query = """Delete from [Transaction] where Transaction_ID = ?"""
+        #     cursor.execute(query, (id,))           
+        #    # Commit the transaction to apply the changes
+        #     connection.commit()
 
-    #         # Remove the selected row from the table
-    #         self.transactions_table.removeRow(selected_row)
+        #     # Close the cursor and connection
+        #     cursor.close()
+        #     connection.close()
 
-    #         # Optionally, show a confirmation message
-    #         QMessageBox.information(self, "Success", "Transaction deleted successfully.")
-    #     else:
-    #         # If no row is selected, show a warning message
-    #         QMessageBox.warning(self, "No Selection", "Please select a transaction to delete.")
-            
-    # def close(self):
-    #     # sys.exit()
-    #     self.close()
+        # self.update()
+
+        dig = QMessageBox(self)
+        dig.setWindowTitle("Confirmation Box")
+        dig.setText("Are you sure you want to delete this transaction?")
+        dig.setIcon(QMessageBox.Icon.Warning)
+        dig.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        response = dig.exec()
+
+        if response == QMessageBox.StandardButton.Yes:
+            current_row = self.transactions_table.currentRow()
+            if current_row >= 0:  # Check if a valid row is selected
+                id = self.transactions_table.item(current_row, 0).text()
+                
+                try:
+                    connection = pyodbc.connect(self.connection_string)
+                    cursor = connection.cursor()
+                    
+                    # Check if the transaction exists
+                    cursor.execute("SELECT COUNT(*) FROM [Transaction] WHERE Transaction_ID = ?", (id,))
+                    count = cursor.fetchone()[0]
+                    if count == 0:
+                        QMessageBox.warning(self, "Error", "Transaction not found")
+                        return
+                    
+                    # Proceed with the delete query
+                    query = """DELETE FROM [Transaction] WHERE Transaction_ID = ?"""
+                    cursor.execute(query, (id,))
+                    
+                    # Commit the transaction to apply the changes
+                    connection.commit()
+
+                except pyodbc.Error as e:
+                    print("Database error:", e)
+                    QMessageBox.warning(self, "Database Error", "An error occurred while deleting the transaction.")
+                finally:
+                    if cursor:
+                        cursor.close()
+                    if connection:
+                        connection.close()
+
+                self.update()  # Assuming this is a valid method to update the UI
+            else:
+                QMessageBox.warning(self, "Error", "No transaction selected")
+
+        # # Get the selected row
+        # selected_row = self.transactions_table.currentRow()
+
+        # # Check if a row is selected
+        # if selected_row >= 0:
+        #     # Remove the corresponding transaction from the list
+        #     del transactions[selected_row]
+
+        #     # Remove the selected row from the table
+        #     self.transactions_table.removeRow(selected_row)
+
+    #     # Optionally, show a confirmation message
+    #     QMessageBox.information(self, "Success", "Transaction deleted successfully.")
+    # else:
+    #     # If no row is selected, show a warning message
+    #     QMessageBox.warning(self, "No Selection", "Please select a transaction to delete.")
+        
 
             
     def view(self):
@@ -282,7 +344,7 @@ class Transaction(QtWidgets.QMainWindow):
         # Pass all the data to view form as parameters
         self.view_form = ViewTransaction(id, category, date, payment_method, sub_category, account_number, amount, expense_type)
         self.view_form.show()     
-            
+    
 
 class ViewTransaction(QtWidgets.QMainWindow):  
     def __init__(self, id, category, date, payment_method, sub_category, account_number, amount, expense_type):
@@ -321,56 +383,81 @@ class ViewTransaction(QtWidgets.QMainWindow):
         self.expense_type_input.setReadOnly(True)
         
         # Connect the close function with the close button.
-        self.close_button.clicked.connect(self.close)
-        
-    # def close(self):
-    #     sys.exit()
+        self.close_button.clicked.connect(self.end)
+
+    def end(self):
+        self.close()
 
 class AddTransaction(QtWidgets.QMainWindow):  
-    def __init__(self, parent_window):
+    def __init__(self, parent_window, connection_string):
         super().__init__()
         uic.loadUi('../../screens/AddTransaction.ui', self)
 
         # Set Window Title
         self.setWindowTitle('Add Transaction')
+
+        self.parent_window = parent_window
+        self.connection_string = connection_string
+
+        # # Validate the input to ensure no field is empty (You can adjust this validation as needed)
+        # if not amount or not payment_method or not expense_type or not account_number or not date:
+        #     QMessageBox.warning(self, "Input Error", "Please fill in all fields to add a transaction.")
+        #     return
+        
+        # Connect the close function with the close button.
+        self.close_button.clicked.connect(self.end)
+
+        # self.save_button.clicked.connect(self.save(date, payment_method, account_number, amount, expense_type))
+        self.save_button.clicked.connect(self.save)
+
+
+    def save(self):
+
         # Collect data from the input fields
-        amount = self.amount_input.text()
+        amount = float(self.amount_input.text())
         payment_method = self.payment_method_input.currentText()
         expense_type = self.expense_type_input.currentText()
         account_number = self.account_number_input.text()
-        date = self.date_input.date().toString("yyyy-MM-dd")  # Convert QDate to string
-        
-        self.parent_window = parent_window
+        date = self.date_input.date().toPyDate()  # Convert QDate to string
 
-        # Validate the input to ensure no field is empty (You can adjust this validation as needed)
-        if not amount or not payment_method or not expense_type or not account_number or not date:
-            QMessageBox.warning(self, "Input Error", "Please fill in all fields to add a transaction.")
-            return
-        
-        # Connect the close function with the close button.
-        self.close_button.clicked.connect(self.close)
+        print(type(amount))
+        print(amount, payment_method, expense_type, account_number, date)
 
-        self.save_button.clicked.conect(self.save(date, payment_method, account_number, amount, expense_type))
 
-    def save(self, date, payment_method, account_number, amount, expense_type):
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
         
-        # Insert the new transaction into the database
-        cursor.execute("""
-            INSERT INTO transactions (TRANSACTION_DATE, FK_PAYMENT_METHOD_ID, FK_ACCOUNT_ID, TRANSACTION_AMOUNT, FK_EXPENSE_ID)
-            VALUES (?, (SELECT P.PAYMENT_METHOD_ID FROM PaymentMethod P WHERE PAYMENT_METHOD_NAME = ?), 
-                       (SELECT A.ACCOUNT_ID FROM ACCOUNT A WHERE ACCOUNT_NUM = ?), ?, 
-                       (SELECT E.EXPENSE_ID FROM EXPENSETYPE E WHERE EXPENSE_TITLE = ?))
-        """, (date, payment_method, account_number, amount, expense_type))
+        # # Insert the new transaction into the database
+        # cursor.execute("""
+        #     INSERT INTO [Transaction] (TRANSACTION_DATE, FK_PAYMENT_METHOD_ID, FK_ACCOUNT_ID, TRANSACTION_AMOUNT, FK_EXPENSE_ID)
+        #     VALUES (?, (SELECT P.PAYMENT_METHOD_ID FROM PaymentMethod P WHERE PAYMENT_METHOD_NAME = ?), 
+        #                (SELECT A.ACCOUNT_ID FROM ACCOUNT A WHERE ACCOUNT_NUM = ?), ?, 
+        #                (SELECT E.EXPENSE_ID FROM EXPENSETYPE E WHERE EXPENSE_TITLE = ?))
+        # """, (date, payment_method, account_number, amount, expense_type))
 
-        # Close the database connection
+        try:
+            cursor.execute("""
+                INSERT INTO [Transaction] (TRANSACTION_DATE, FK_PAYMENT_METHOD_ID, FK_ACCOUNT_ID, TRANSACTION_AMOUNT, FK_EXPENSE_ID)
+                VALUES (?, 
+                        (SELECT P.PAYMENT_METHOD_ID FROM PaymentMethod P WHERE PAYMENT_METHOD_NAME = ?), 
+                        (SELECT A.ACCOUNT_ID FROM ACCOUNT A WHERE ACCOUNT_NUM = ?), ?, 
+                        (SELECT E.EXPENSE_ID FROM EXPENSETYPE E WHERE EXPENSE_TITLE = ?))
+            """, (date, payment_method, account_number, amount, expense_type))
+            connection.commit()  # Commit if the insert was successful
+        except Exception as e:
+            print("Error executing insert:", e)
+            connection.rollback()  # Rollback in case of error
+
+                # Close the database connection
         connection.close()
 
         # Update the table in the parent window
         self.parent_window.update()
         # Show a success message and close the window
         QtWidgets.QMessageBox.information(self, "Success", "Transaction Updated Successfully")
+        self.close()
+
+    def end(self):
         self.close()
 
 # app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication

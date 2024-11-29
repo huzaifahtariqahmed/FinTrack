@@ -7,6 +7,7 @@ from Project import USER
 from AutomatedTransactionRecordingModule import Transaction
 from income_statement import IncomeStatement
 from Project_Permissions import PERMISSION
+from AccountsList import Accounts
 
 import pyodbc
 
@@ -62,6 +63,8 @@ class Dashboard(QtWidgets.QMainWindow):
     def viewAccountsFunc(self):
         print("view accounts button pressed")
         # TODO: Connect huzaifah's account scree here
+        self.acc = Accounts(connection_string)
+        self.acc.show()
         
     def transactions(self):
         print("transactions button pressed")
