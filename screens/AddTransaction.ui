@@ -17,10 +17,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>150</y>
+      <x>250</x>
+      <y>140</y>
       <width>481</width>
-      <height>411</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="title">
@@ -146,63 +146,11 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>260</y>
-       <width>111</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>260</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Category</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>300</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Subcategory</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
     <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
        <x>220</x>
        <y>100</y>
-       <width>111</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_4">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>300</y>
        <width>111</width>
        <height>26</height>
       </rect>
@@ -221,8 +169,8 @@
     <widget class="QPushButton" name="saveButton">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>360</y>
+       <x>330</x>
+       <y>290</y>
        <width>113</width>
        <height>32</height>
       </rect>
@@ -235,7 +183,7 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>360</y>
+       <y>290</y>
        <width>113</width>
        <height>32</height>
       </rect>
