@@ -6,6 +6,7 @@ import sys
 from Project import USER
 from AutomatedTransactionRecordingModule import Transaction
 from income_statement import IncomeStatement
+from Project_Permissions import PERMISSION
 
 import pyodbc
 
@@ -54,7 +55,8 @@ class Dashboard(QtWidgets.QMainWindow):
         
     def permissionsManager(self):
         print("Manage permissions")
-        # TODO: Connect permissions managing screen here
+        self.pm = PERMISSION(connection_string)
+        self.pm.show()
         
         
     def viewAccountsFunc(self):
