@@ -24,21 +24,8 @@
      </rect>
     </property>
     <property name="title">
-     <string>Edit Account Details</string>
+     <string>Add Account Details</string>
     </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Account ID</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
@@ -65,29 +52,6 @@
       <string>Account Number</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Account Balance ($)</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="account_id_input">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>201</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="account_title_input">
      <property name="geometry">
       <rect>
@@ -103,16 +67,6 @@
       <rect>
        <x>150</x>
        <y>90</y>
-       <width>201</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="account_balance_input">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>120</y>
        <width>201</width>
        <height>21</height>
       </rect>
