@@ -28,10 +28,10 @@ class USER(QtWidgets.QMainWindow):
         super(USER, self).__init__() 
 
         self.connection_string = connection_string
-        self.User_DataTable(self.connection_string)
+        self.User_DataTable()
     
 
-    def User_DataTable(self, connection_string):
+    def User_DataTable(self):
         # Load the .ui file
         uic.loadUi('../../User_and_Roles/Project_UserAccessControl.ui', self)
         self.setWindowTitle("User Acess Control")
@@ -40,10 +40,13 @@ class USER(QtWidgets.QMainWindow):
         
         self.Search_Button.clicked.connect(self.search)        # Connect the search function with the search button.
         self.Delete_Button.clicked.connect(self.delete)        # Connect the delete function with the delete button.
-        self.Close_Button.clicked.connect(self.close)         # Connect the close function with the close button.
+        self.Close_Button.clicked.connect(self.end)         # Connect the close function with the close button.
         self.Add_Button.clicked.connect(self.add)
         self.Edit_Button.clicked.connect(self.edit)
         self.EditRoleSettings_Button.clicked.connect(self.editRoleSettings)
+
+    def end(self):
+        self.close()
 
     def populate_users(self):         
 
@@ -410,9 +413,9 @@ class USER(QtWidgets.QMainWindow):
         header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
 
-    def close(self):
-        # exit the program
-        sys.exit()
+    # def close(self):
+    #     # exit the program
+    #     sys.exit()
 
 
 
