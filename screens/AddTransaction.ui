@@ -42,7 +42,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QDateEdit" name="transactionDate">
+    <widget class="QDateEdit" name="date_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -110,7 +110,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="amount_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -136,7 +136,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="expense_type_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -196,7 +196,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QComboBox" name="comboBox_3">
+    <widget class="QComboBox" name="payment_method_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -246,7 +246,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="account_number_input">
      <property name="geometry">
       <rect>
        <x>220</x>
