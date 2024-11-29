@@ -21,17 +21,17 @@ else:
     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 rows = [
-    'Service Charges', 'Product Sales', '       Total Sales Revenue',
+    'Service Charges', 'Product Sales', '        Total Sales Revenue',
     'Office Supplies', 'Utilities', 'Marketing Expense', 
-    '     Total Purchase Expense', 'Equipment Payment Expense',
-    'Internet Fees', 'Interest Payment', 'Payment Expense',
-    'Dividends Revenue', '      Receipts Revenue', '        Revenue',
+    '        Total Purchase Expense', 'Equipment Payment Expense',
+    'Internet Fees', 'Interest Payment', '        Total Operating Expense',
+    'Dividends Revenue', '        Total Receipts Revenue', '        Total Revenue',
     'Net Income for FY'
 ]
 
 special = [
-    '       Total Sales Revenue', '     Total Purchase Expense', 'Receipts Revenue',
-    'Revenue', 'Net Income for FY'
+    '        Total Sales Revenue', '        Total Purchase Expense', '        Total Receipts Revenue',
+    '        Total Operating Expense', '        Total Revenue', 'Net Income for FY'
 ]
 
 class IncomeStatement(QtWidgets.QMainWindow):
