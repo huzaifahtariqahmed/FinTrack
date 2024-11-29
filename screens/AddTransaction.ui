@@ -256,7 +256,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="saveButton">
+    <widget class="QPushButton" name="save_button">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -269,7 +269,7 @@
       <string>Save</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="close_button">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -279,7 +279,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Exit</string>
+      <string>Close</string>
      </property>
     </widget>
    </widget>
