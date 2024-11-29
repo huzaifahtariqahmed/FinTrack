@@ -68,7 +68,7 @@ class Transaction(QtWidgets.QMainWindow):
         self.view_button.clicked.connect(self.view)
 
         # Connect the delete function with the delete button.
-        self.delete_button.clicked.connect(self.delete)
+        # self.delete_button.clicked.connect(self.delete)
         
         # Connect the add function with the add button.
         self.add_button.clicked.connect(self.add)
@@ -329,8 +329,8 @@ class AddTransaction(QtWidgets.QMainWindow):
         self.setWindowTitle('Add Transaction')
         # Collect data from the input fields
         amount = self.amount_input.text()
-        payment_method = self.payment_method_input.text()
-        expense_type = self.expense_type_input.text()
+        payment_method = self.payment_method_input.currentText()
+        expense_type = self.expense_type_input.currentText()
         account_number = self.account_number_input.text()
         date = self.date_input.date().toString("yyyy-MM-dd")  # Convert QDate to string
         
