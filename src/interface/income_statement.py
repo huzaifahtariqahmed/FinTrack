@@ -7,18 +7,18 @@ import sys
 import pyodbc
 
 # FOR GENERATING A CONNECTION STRING
-server = 'DESKTOP-6M55HJA\\SQLSERVER1'
-database = 'FinTrack'  # Name of your Northwind database
-use_windows_authentication = True  # Set to True to use Windows Authentication
-username = 'your_username'  # Specify a username if not using Windows Authentication
-password = 'your_password'  # Specify a password if not using Windows Authentication
+# server = 'DESKTOP-6M55HJA\\SQLSERVER1'
+# database = 'FinTrack'  # Name of your Northwind database
+# use_windows_authentication = True  # Set to True to use Windows Authentication
+# username = 'your_username'  # Specify a username if not using Windows Authentication
+# password = 'your_password'  # Specify a password if not using Windows Authentication
 
 
-# Create the connection string based on the authentication method chosen
-if use_windows_authentication:
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-else:
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+# # Create the connection string based on the authentication method chosen
+# if use_windows_authentication:
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+# else:
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 rows = [
     'Service Charges', 'Product Sales', '        Total Sales Revenue',
@@ -35,7 +35,7 @@ special = [
 ]
 
 class IncomeStatement(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, connection_string):
         super(IncomeStatement, self).__init__()
 
         # load the UI file
@@ -44,9 +44,11 @@ class IncomeStatement(QtWidgets.QMainWindow):
         self.tableWidget.setColumnWidth(0, 300)  # Set width for column 1
         self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
 
+        self.connection_string = connection_string
+
         self.generate_report() # generate the initial report
 
-        # TODO: connect button to function
+        # for buttons
         self.generateReport.clicked.connect(self.generate_report)
         self.saveReport.clicked.connect(self.save_report)
 
@@ -65,7 +67,7 @@ class IncomeStatement(QtWidgets.QMainWindow):
 
     def fetch_data(self, start_date, end_date):
         # Database connection
-        conn = pyodbc.connect(connection_string)
+        conn = pyodbc.connect(self.connection_string)
         cursor = conn.cursor()
         
         # TODO: complete the query

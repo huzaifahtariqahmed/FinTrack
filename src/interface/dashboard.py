@@ -4,6 +4,7 @@ from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
 from Project import USER
+from income_statement import IncomeStatement
 import pyodbc
 
 # FOR GENERATING A CONNECTION STRING
@@ -60,7 +61,8 @@ class Dashboard(QtWidgets.QMainWindow):
         
     def incomeStatement(self):
         print("income statement called")
-        # TODO: Income statement function called
+        self.income_statement = IncomeStatement(connection_string)
+        self.income_statement.show()
         
     def close(self):
         print("close")
