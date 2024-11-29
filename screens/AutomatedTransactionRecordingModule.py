@@ -1,19 +1,23 @@
+from PyQt6 import QtWidgets, uic, QtCore
+from PyQt6.QtCore import QDate, Qt
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView , QMessageBox
 import sys
-from PyQt6 import QtWidgets, uic
-from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtCore import Qt
-from PyQt6 import QtCore
+import pyodbc
 
-transactions = [
-    ["1", "Expense", "2024-11-01", "Credit Card", "Purchase", "10012345678901", "250.75", "Office Supplies"],
-    ["2", "Revenue", "2024-11-02", "Bank Transfer", "Sales", "20023456789012", "5000.00", "Product Sale"],
-    ["3", "Expense", "2024-11-03", "Cash", "Payment", "30034567890123", "150.00", "Utility Bill"],
-    ["4", "Revenue", "2024-11-04", "PayPal", "Receipt", "40045678901234", "1200.50", "Service Payment"],
-    ["5", "Expense", "2024-11-05", "Debit Card", "Purchase", "50056789012345", "375.25", "Travel Expenses"],
-    ["6", "Revenue", "2024-11-06", "Cash", "Sales", "60067890123456", "720.00", "Store Sale"],
-    ["7", "Expense", "2024-11-07", "Bank Transfer", "Payment", "70078901234567", "480.00", "Subscription Fee"],
-    ["8", "Revenue", "2024-11-08", "Credit Card", "Receipt", "80089012345678", "2100.75", "Client Payment"]
-]
+
+# Replace these with your own database connection details
+server = 'DESKTOP-OJMNK7F\\SQLSERVER1'
+database = 'Fintrack'  # Name of your Fintrack database
+use_windows_authentication = False  # Set to True to use Windows Authentication
+username = 'sa'  # Specify a username if not using Windows Authentication
+password = '1234'  # Specify a password if not using Windows Authentication
+
+#  Create the connection string based on the authentication method chosen
+if use_windows_authentication:
+    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+else:
+    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+
 
 class Transaction(QtWidgets.QMainWindow):
     def __init__(self):
@@ -24,14 +28,36 @@ class Transaction(QtWidgets.QMainWindow):
         
         # Set Window Title
         self.setWindowTitle('Transaction Recording Module')
-       
-        self.transactions_table.setRowCount(len(transactions))
-        for i in range(len(transactions)):
-            for j in range(8):
-                item = QtWidgets.QTableWidgetItem(transactions[i][j])
-                # Make the items non-editable
-                item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable) 
-                self.transactions_table.setItem(i,j,item)
+
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
+        cursor.execute("""select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
+                        FROM [TRANSACTION] T
+                        inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
+                        inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
+                        inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
+                        inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
+                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
+
+        self.transactions_table.clearContents()
+        self.transactions_table.setRowCount(0)
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(cursor.fetchall()):
+            self.transactions_table.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                self.transactions_table.setItem(row_index, col_index, item)
+
+        
+        # Close the database connection
+        connection.close()
+
+        # Adjust content display
+        header = self.transactions_table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
+
         # Connect the search function with the search button.
         self.search_button.clicked.connect(self.search)
         
@@ -51,16 +77,24 @@ class Transaction(QtWidgets.QMainWindow):
         self.close_button.clicked.connect(self.close)
         
     def reset(self):
-        # Clear all current table contents
-        self.transactions_table.clearContents()
-        self.transactions_table.setRowCount(len(transactions))  # Reset the row count to match the original list size
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
+        cursor.execute("""select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
+                        FROM [TRANSACTION] T
+                        inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
+                        inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
+                        inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
+                        inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
+                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
 
-        # Populate the table with the original transactions
-        for i, transaction in enumerate(transactions):
-            for j, value in enumerate(transaction):
-                item = QtWidgets.QTableWidgetItem(str(value))
-                item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
-                self.transactions_table.setItem(i, j, item)
+        self.transactions_table.clearContents()
+        self.transactions_table.setRowCount(0)
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(cursor.fetchall()):
+            self.transactions_table.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                self.transactions_table.setItem(row_index, col_index, item)
 
     
     def search(self):
@@ -71,39 +105,40 @@ class Transaction(QtWidgets.QMainWindow):
         # Get search input values
         category = self.category_input.currentText().strip()
         sub_category = self.sub_category_input_2.currentText().strip()
-        amount = self.amount_input.text().strip()
-        payment_method = self.payment_method_input.text().strip()
-        expense_type = self.expense_type_input.text().strip()
-        account_number = self.account_number_input.text().strip()
-        date = self.date_input.date().toString("yyyy-MM-dd").strip()  # Convert QDate to string
 
-        # Initialize row counter for the filtered results
-        count = 0
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
+        query = """select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
+                        FROM [TRANSACTION] T
+                        inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
+                        inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
+                        inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
+                        inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
+                        inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
+                        where 
+                        C.CATEGORY_NAME = ? and S.SUB_CATEGORY_NAME = ?
+                        """
+        
+        cursor.execute(query, (category, sub_category,))
 
-        # Iterate through transactions and filter
-        for transaction in transactions:
-            # Perform comparisons; skip if any condition fails
-            if (category and category not in transaction[1]) or \
-            (sub_category and sub_category not in transaction[4]) or \
-            (amount and amount not in str(transaction[6])) or \
-            (payment_method and payment_method not in transaction[3]) or \
-            (expense_type and expense_type not in transaction[7]) or \
-            (account_number and account_number not in str(transaction[5])) or \
-            (date and date not in transaction[2]):
-                continue
-            
-            # Add the matching transaction to the table
-            self.transactions_table.insertRow(count)
-            for j, value in enumerate(transaction):
-                item = QtWidgets.QTableWidgetItem(str(value))
-                item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
-                self.transactions_table.setItem(count, j, item)
-            count += 1
+        self.transactions_table.clearContents()
+        self.transactions_table.setRowCount(0)
+               
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(cursor.fetchall()):
+            self.transactions_table.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                item = QTableWidgetItem(str(cell_data))
+                self.transactions_table.setItem(row_index, col_index, item)
 
-        # Display a message if no results are found
-        if count == 0:
-            QMessageBox.warning(self, "No Results", "No transactions match the search criteria.")             
-            
+        # Close the database connection
+        connection.close()
+        
+        # Adjust content display
+        header = self.transactions_table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)      
       
     def add(self):
         # Collect data from the input fields
