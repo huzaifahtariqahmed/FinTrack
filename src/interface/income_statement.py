@@ -1,5 +1,6 @@
 # Importing essential modules
 from PyQt6 import QtWidgets, uic
+from PyQt6.QtGui import QFont
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QHeaderView
 import sys
@@ -19,7 +20,19 @@ if use_windows_authentication:
 else:
     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
+rows = [
+    'Service Charges', 'Product Sales', '       Total Sales Revenue',
+    'Office Supplies', 'Utilities', 'Marketing Expense', 
+    '     Total Purchase Expense', 'Equipment Payment Expense',
+    'Internet Fees', 'Interest Payment', 'Payment Expense',
+    'Dividends Revenue', '      Receipts Revenue', '        Revenue',
+    'Net Income for FY'
+]
 
+special = [
+    '       Total Sales Revenue', '     Total Purchase Expense', 'Receipts Revenue',
+    'Revenue', 'Net Income for FY'
+]
 
 class IncomeStatement(QtWidgets.QMainWindow):
     def __init__(self):
@@ -30,6 +43,8 @@ class IncomeStatement(QtWidgets.QMainWindow):
 
         self.tableWidget.setColumnWidth(0, 300)  # Set width for column 1
         self.tableWidget.setColumnWidth(1, 100)  # Set width for column 2
+
+        self.generate_report() # generate the initial report
 
         # TODO: connect button to function
         self.generateReport.clicked.connect(self.generate_report)
@@ -43,7 +58,8 @@ class IncomeStatement(QtWidgets.QMainWindow):
 
         # Fetch data from database
         data = self.fetch_data(start_date, end_date)
-        
+        print(data)
+
         # Populate TreeWidget with data
         self.populate_table(data)
 
@@ -54,10 +70,75 @@ class IncomeStatement(QtWidgets.QMainWindow):
         
         # TODO: complete the query
         query = """
-        SELECT account_name, debit, credit 
-        FROM income_statement
-        WHERE transaction_date BETWEEN ? AND ?
-        """
+        SELECT 
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 15 THEN T.TRANSACTION_AMOUNT -- Service Charges
+        END) AS 'Service Charges',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 11 THEN T.TRANSACTION_AMOUNT -- Product Sales
+        END) AS 'Product Sales',
+
+        SUM(CASE 
+            WHEN sc.SUB_CATEGORY_ID = 6 THEN t.TRANSACTION_AMOUNT -- Total Sales Revenue
+        END) AS 'Total Sales Revenue',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 12 THEN T.TRANSACTION_AMOUNT -- Office Supplies
+        END) AS 'Office Supplies',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 13 THEN T.TRANSACTION_AMOUNT -- Utilities
+        END) AS 'Utilities',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 19 THEN T.TRANSACTION_AMOUNT -- Marketing Expense
+        END) AS 'Marketing Expense',
+
+        SUM(CASE 
+            WHEN sc.SUB_CATEGORY_ID = 5 THEN t.TRANSACTION_AMOUNT -- Total Purchase Expense
+        END) AS 'Total Purchase Expense',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 14 THEN T.TRANSACTION_AMOUNT -- Equipment Payment
+        END) AS 'Equipment Payment Expense',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 16 THEN T.TRANSACTION_AMOUNT -- Internet Fees
+        END) AS 'Internet Fees',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 17 THEN T.TRANSACTION_AMOUNT -- Internet Payment
+        END) AS 'Interest Payment',
+
+        SUM(CASE 
+            WHEN sc.SUB_CATEGORY_ID = 7 THEN t.TRANSACTION_AMOUNT -- Total Purchase Expense
+        END) AS 'Payment Expense',
+
+        SUM(CASE 
+            WHEN E.EXPENSE_ID = 18 THEN T.TRANSACTION_AMOUNT -- Dividends Revenue
+        END) AS 'Dividends Revenue',
+
+        SUM(CASE 
+            WHEN sc.FK_CATEGORY_ID = 8 THEN t.TRANSACTION_AMOUNT -- Receipts Revenue
+        END) AS 'Receipts Revenue',
+
+        SUM(CASE 
+            WHEN sc.FK_CATEGORY_ID = 4 THEN t.TRANSACTION_AMOUNT -- Total Revenue
+        END) AS 'Revenue',
+
+        SUM(CASE 
+            WHEN sc.FK_CATEGORY_ID = 4 THEN t.TRANSACTION_AMOUNT -- Revenue
+            WHEN sc.FK_CATEGORY_ID = 3 THEN -t.TRANSACTION_AMOUNT -- Expense 
+        END) AS 'Gross Revenue'
+
+        FROM [Transaction] T
+        INNER JOIN ExpenseType E ON E.EXPENSE_ID = T.FK_EXPENSE_ID
+        INNER JOIN [SubCategory] SC ON SC.SUB_CATEGORY_ID = E.FK_SUB_CATEGORY_ID
+        WHERE T.TRANSACTION_DATE BETWEEN ? AND ?;
+                """
+
         cursor.execute(query, (start_date, end_date))
         
         data = cursor.fetchall()
@@ -69,15 +150,16 @@ class IncomeStatement(QtWidgets.QMainWindow):
         """
         Populate the QTableWidget with data.
         """
-        self.tableWidget.setRowCount(len(data))  # Set row count based on data length
+        self.tableWidget.setRowCount(len(data[0]))  # Set row count based on data length
+
+        font = QFont()
+        font.setBold(True)
         
         # TODO: replace these dummy calcualtions with actual stuff
-        for row_index, row_data in enumerate(data):
-            account_name = row_data[0] 
-            debit = row_data[1] or 0  
-            credit = row_data[2] or 0 
-            amount = debit - credit 
-            
+        for row_index, row_data in enumerate(data[0]):
+            account_name = rows[row_index] 
+            if not row_data: row_data = 0
+            amount = row_data
             # Set column 0 (description)
             item_description = QTableWidgetItem(account_name)
             self.tableWidget.setItem(row_index, 0, item_description)
@@ -85,6 +167,10 @@ class IncomeStatement(QtWidgets.QMainWindow):
             # Set column 1 (amount)
             item_amount = QTableWidgetItem(f"{amount:.2f}")
             self.tableWidget.setItem(row_index, 1, item_amount)
+
+            if account_name in special:
+                item_description.setFont(font)
+                item_amount.setFont(font)
 
 
     def save_report(self):
