@@ -42,7 +42,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QDateEdit" name="transactionDate">
+    <widget class="QDateEdit" name="date_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -110,7 +110,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="amount_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -136,7 +136,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="expense_type_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -146,7 +146,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="category_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -188,7 +188,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_3">
+    <widget class="QComboBox" name="payment_method_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -198,7 +198,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_4">
+    <widget class="QComboBox" name="sub_category_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -208,7 +208,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="account_number_input">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -218,7 +218,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="saveButton">
+    <widget class="QPushButton" name="save_button">
      <property name="geometry">
       <rect>
        <x>340</x>
@@ -231,7 +231,7 @@
       <string>Save</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="close_button">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -241,7 +241,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Exit</string>
+      <string>Close</string>
      </property>
     </widget>
    </widget>
@@ -252,7 +252,7 @@
      <x>0</x>
      <y>0</y>
      <width>1470</width>
-     <height>36</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
