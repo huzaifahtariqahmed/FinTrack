@@ -40,6 +40,7 @@ class Transaction(QtWidgets.QMainWindow):
                         inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
                         inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
                         left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID""")
+        
 
         self.transactions_table.clearContents()
         self.transactions_table.setRowCount(0)
@@ -50,7 +51,10 @@ class Transaction(QtWidgets.QMainWindow):
                 item = QTableWidgetItem(str(cell_data))
                 self.transactions_table.setItem(row_index, col_index, item)
 
-        
+        # Allow clearing the field
+        self.date_input.setSpecialValueText("")  # Show empty placeholder
+        # self.date_input.clear()
+
         # Close the database connection
         connection.close()
 
@@ -126,33 +130,116 @@ class Transaction(QtWidgets.QMainWindow):
                 self.transactions_table.setItem(row_index, col_index, item)
 
     
+    # def search(self):
+    #     # Clear only the table contents, preserving headers
+    #     self.transactions_table.clearContents()
+    #     self.transactions_table.setRowCount(0)  # Reset the row count to zero
+        
+    #     # Get search input values
+    #     category = self.category_input.currentText().strip()
+    #     sub_category = self.sub_category_input_2.currentText().strip()
+
+    #     connection = pyodbc.connect(self.connection_string)
+    #     cursor = connection.cursor()
+    #     query = """select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
+    #                     FROM [TRANSACTION] T
+    #                     inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
+    #                     inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
+    #                     inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
+    #                     inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
+    #                     left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
+    #                     where 
+    #                     C.CATEGORY_NAME = ? and S.SUB_CATEGORY_NAME = ?
+    #                     """
+        
+    #     cursor.execute(query, (category, sub_category,))
+
+    #     self.transactions_table.clearContents()
+    #     self.transactions_table.setRowCount(0)
+               
+    #     # Fetch all rows and populate the table
+    #     for row_index, row_data in enumerate(cursor.fetchall()):
+    #         self.transactions_table.insertRow(row_index)
+    #         for col_index, cell_data in enumerate(row_data):
+    #             item = QTableWidgetItem(str(cell_data))
+    #             self.transactions_table.setItem(row_index, col_index, item)
+
+    #     # Close the database connection
+    #     connection.close()
+        
+    #     # Adjust content display
+    #     header = self.transactions_table.horizontalHeader()
+    #     header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+    #     header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+    #     header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)      
+
     def search(self):
         # Clear only the table contents, preserving headers
         self.transactions_table.clearContents()
         self.transactions_table.setRowCount(0)  # Reset the row count to zero
-        
-        # Get search input values
+
+        # Get search input values from UI components
         category = self.category_input.currentText().strip()
         sub_category = self.sub_category_input_2.currentText().strip()
+        transaction_date = self.date_input.date().toString("yyyy-MM-dd") if self.date_input.date() else None
+        payment_method = self.payment_method_input.currentText().strip()
+        account_num = self.account_number_input.text().strip()
+        transaction_amount = self.amount_input.text().strip()
+        expense_type = self.expense_type_input.currentText().strip()
 
+        print(category, sub_category, transaction_date, payment_method, account_num, transaction_amount, expense_type)
+
+        # Connect to the database
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
-        query = """select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
-                        FROM [TRANSACTION] T
-                        inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
-                        inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
-                        inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
-                        inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-                        left join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
-                        where 
-                        C.CATEGORY_NAME = ? and S.SUB_CATEGORY_NAME = ?
-                        """
-        
-        cursor.execute(query, (category, sub_category,))
 
-        self.transactions_table.clearContents()
-        self.transactions_table.setRowCount(0)
-               
+        # Base query
+        query = """
+            SELECT T.TRANSACTION_ID,
+                C.CATEGORY_NAME, 
+                CONVERT(DATE, T.TRANSACTION_DATE) AS 'Date', 
+                P.PAYMENT_METHOD_NAME, 
+                S.SUB_CATEGORY_NAME, 
+                A.ACCOUNT_NUM, 
+                T.TRANSACTION_AMOUNT, 
+                E.EXPENSE_TITLE
+            FROM [TRANSACTION] T
+            INNER JOIN PaymentMethod P ON P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
+            INNER JOIN ExpenseType E ON T.FK_EXPENSE_ID = E.EXPENSE_ID
+            INNER JOIN SubCategory S ON E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
+            INNER JOIN Category C ON C.CATEGORY_ID = S.FK_CATEGORY_ID
+            LEFT JOIN Account A ON A.ACCOUNT_ID = T.FK_ACCOUNT_ID
+            WHERE 1=1
+        """
+
+        # Dynamic filter conditions
+        params = []
+
+        if category:
+            query += " AND C.CATEGORY_NAME = ?"
+            params.append(category)
+        if sub_category:
+            query += " AND S.SUB_CATEGORY_NAME = ?"
+            params.append(sub_category)
+        if transaction_date:
+            query += " AND CONVERT(DATE, T.TRANSACTION_DATE) = ?"
+            params.append(transaction_date)
+        if payment_method:
+            query += " AND P.PAYMENT_METHOD_NAME = ?"
+            params.append(payment_method)
+        if account_num:
+            query += " AND A.ACCOUNT_NUM = ?"
+            params.append(account_num)
+        if transaction_amount:
+            query += " AND T.TRANSACTION_AMOUNT = ?"
+            params.append(transaction_amount)
+        if expense_type:
+            query += " AND E.EXPENSE_TITLE LIKE ?"
+            params.append(expense_type)  # Use LIKE for partial matching
+
+        # Execute the query with dynamic parameters
+        cursor.execute(query, params)
+
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(cursor.fetchall()):
             self.transactions_table.insertRow(row_index)
@@ -162,13 +249,12 @@ class Transaction(QtWidgets.QMainWindow):
 
         # Close the database connection
         connection.close()
-        
+
         # Adjust content display
         header = self.transactions_table.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)      
-      
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)  
     def add(self):
         # Pass all the data to view form as parameters
         self.add_form = AddTransaction(self, self.connection_string)
