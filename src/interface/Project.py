@@ -219,7 +219,7 @@ class USER(QtWidgets.QMainWindow):
         if response == QMessageBox.StandardButton.Yes:
             userid = self.UserTable.item(self.UserTable.currentRow(), 0).text()
             print(userid)
-            uic.loadUi('../User_and_Roles/Project_NewUser.ui', self)
+            uic.loadUi('../../User_and_Roles/Project_NewUser.ui', self)
             # Clear previous content if needed
             self.populate_combobox_job_roles()
             self.Done_Button.clicked.connect(lambda: self.Update_User(userid))
