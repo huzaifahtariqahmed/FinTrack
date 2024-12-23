@@ -32,7 +32,7 @@ financial oversight, and ensure the accuracy of their financial data.
 - Python 3.x
 - Required Python packages (specified in `requirements.txt`)
 - QT Designer
-- **ODBC Driver 17 for SQL Server** for database connectivity
+- ODBC Driver 17 for SQL Server for database connectivity
 - Microsoft SQL Server Management Studio (SSMS)
 
 ### Installation
