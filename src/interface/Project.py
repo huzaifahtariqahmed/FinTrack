@@ -6,22 +6,6 @@ import sys
 import pyodbc
 
 
-
-# # Replace these with your own database connection details
-# server = 'DESKTOP-OJMNK7F\\SQLSERVER1'
-# database = 'Fintrack'  # Name of your Fintrack database
-# use_windows_authentication = False  # Set to True to use Windows Authentication
-# username = 'sa'  # Specify a username if not using Windows Authentication
-# password = '1234'  # Specify a password if not using Windows Authentication
-
-# #  Create the connection string based on the authentication method chosen
-# if use_windows_authentication:
-#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-# else:
-#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
-
-
-
 class USER(QtWidgets.QMainWindow):
     def __init__(self, connection_string):
         # Call the inherited classes __init__ method
@@ -413,16 +397,6 @@ class USER(QtWidgets.QMainWindow):
         header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
 
-    # def close(self):
-    #     # exit the program
-    #     sys.exit()
-
-
-
-# app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
-# window = USER() # Create an instance of our 
-# window.show()
-# app.exec() # Start the application
 
 def main():
     app = QApplication(sys.argv)

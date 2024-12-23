@@ -260,98 +260,8 @@ class Transaction(QtWidgets.QMainWindow):
         self.add_form = AddTransaction(self, self.connection_string)
         self.add_form.show()     
 
-        # # Collect data from the input fields
-        # category = self.category_input.currentText()
-        # sub_category = self.sub_category_input_2.currentText()
-        # amount = self.amount_input.text()
-        # payment_method = self.payment_method_input.text()
-        # expense_type = self.expense_type_input.text()
-        # account_number = self.account_number_input.text()
-        # date = self.date_input.date().toString("yyyy-MM-dd")  # Convert QDate to string
-
-        # # Validate the input to ensure no field is empty (You can adjust this validation as needed)
-        # if not category or not sub_category or not amount or not payment_method or not expense_type or not account_number or not date:
-        #     QMessageBox.warning(self, "Input Error", "Please fill in all fields to add a transaction.")
-        #     return
-        
-        # connection = pyodbc.connect(connection_string)
-        # cursor = connection.cursor()
-        # query = """select T.TRANSACTION_ID, C.CATEGORY_NAME, CONVERT(DATE, T.TRANSACTION_DATE) as 'Date', P.PAYMENT_METHOD_NAME, S.SUB_CATEGORY_NAME, A.ACCOUNT_NUM, T.TRANSACTION_AMOUNT, E.EXPENSE_TITLE
-        #                 FROM [TRANSACTION] T
-        #                 inner join PaymentMethod P on P.PAYMENT_METHOD_ID = T.FK_PAYMENT_METHOD_ID
-        #                 inner join ExpenseType E on T.FK_EXPENSE_ID = E.EXPENSE_ID
-        #                 inner join SubCategory S on E.FK_SUB_CATEGORY_ID = S.SUB_CATEGORY_ID
-        #                 inner join Category C on C.CATEGORY_ID = S.FK_CATEGORY_ID
-        #                 inner join Account A on A.ACCOUNT_ID = T.FK_ACCOUNT_ID
-        #                 where 
-        #                 C.CATEGORY_NAME = ? and S.SUB_CATEGORY_NAME = ?
-        #                 """
-        
-        # cursor.execute(query, (category, sub_category,))
-
-        # # Get the last inserted row ID (for display purposes, optional)
-        # transaction_id = cursor.lastrowid
-
-        # # Close the database connection
-        # connection.close()
-
-
-        # # Create a new transaction (all data is treated as strings)
-        # new_transaction = [
-        #     str(len(transactions) + 1),  # Generate a new transaction ID (assuming IDs are sequential)
-        #     category,
-        #     date,
-        #     payment_method,
-        #     sub_category,
-        #     account_number,  # Account number remains a string
-        #     amount,  # Amount is a string
-        #     expense_type
-        # ]
-
-        # # Add the new transaction to the list
-        # transactions.append(new_transaction)
-
-        # # Update the table to show the new transaction
-        # row_position = self.transactions_table.rowCount()
-        # self.transactions_table.insertRow(row_position)  # Insert a new row at the end
-
-        # # Fill the new row with the new transaction data
-        # for col, value in enumerate(new_transaction):
-        #     item = QtWidgets.QTableWidgetItem(str(value))
-        #     item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
-        #     self.transactions_table.setItem(row_position, col, item)
-
-        # # Optionally, reset all input fields after adding the transaction
-        # self.category_input.setCurrentIndex(0)
-        # self.sub_category_input_2.setCurrentIndex(0)
-        # self.amount_input.clear()
-        # self.payment_method_input.clear()
-        # self.expense_type_input.clear()
-        # self.account_number_input.clear()
-        # self.date_input.setDate(QtCore.QDate.currentDate())
-      
+       
     def delete(self):
-        # dig = QMessageBox(self)
-        # dig.setWindowTitle("Confirmation Box")
-        # dig.setText ("Are you sure you want to delete this transaction?")
-        # dig.setIcon(QMessageBox.Icon.Warning) 
-        # dig.setStandardButtons (QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No )
-        # response = dig.exec()
-
-        # if response == QMessageBox.StandardButton.Yes:
-        #     id = self.transaction_table.item(self.transaction_table.currentRow(), 0).text()
-        #     connection = pyodbc.connect(self.connection_string)
-        #     cursor = connection.cursor()
-        #     query = """Delete from [Transaction] where Transaction_ID = ?"""
-        #     cursor.execute(query, (id,))           
-        #    # Commit the transaction to apply the changes
-        #     connection.commit()
-
-        #     # Close the cursor and connection
-        #     cursor.close()
-        #     connection.close()
-
-        # self.update()
 
         dig = QMessageBox(self)
         dig.setWindowTitle("Confirmation Box")
@@ -395,23 +305,6 @@ class Transaction(QtWidgets.QMainWindow):
                 self.update()  # Assuming this is a valid method to update the UI
             else:
                 QMessageBox.warning(self, "Error", "No transaction selected")
-
-        # # Get the selected row
-        # selected_row = self.transactions_table.currentRow()
-
-        # # Check if a row is selected
-        # if selected_row >= 0:
-        #     # Remove the corresponding transaction from the list
-        #     del transactions[selected_row]
-
-        #     # Remove the selected row from the table
-        #     self.transactions_table.removeRow(selected_row)
-
-    #     # Optionally, show a confirmation message
-    #     QMessageBox.information(self, "Success", "Transaction deleted successfully.")
-    # else:
-    #     # If no row is selected, show a warning message
-    #     QMessageBox.warning(self, "No Selection", "Please select a transaction to delete.")
         
 
             
@@ -484,16 +377,10 @@ class AddTransaction(QtWidgets.QMainWindow):
 
         self.parent_window = parent_window
         self.connection_string = connection_string
-
-        # # Validate the input to ensure no field is empty (You can adjust this validation as needed)
-        # if not amount or not payment_method or not expense_type or not account_number or not date:
-        #     QMessageBox.warning(self, "Input Error", "Please fill in all fields to add a transaction.")
-        #     return
         
         # Connect the close function with the close button.
         self.close_button.clicked.connect(self.end)
 
-        # self.save_button.clicked.connect(self.save(date, payment_method, account_number, amount, expense_type))
         self.save_button.clicked.connect(self.save)
 
 
@@ -545,8 +432,3 @@ class AddTransaction(QtWidgets.QMainWindow):
 
     def end(self):
         self.close()
-
-# app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
-# window = Transaction(connection_string) # Create an instance of our 
-# window.show()
-# app.exec() # Start the application
