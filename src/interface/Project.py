@@ -33,7 +33,7 @@ class USER(QtWidgets.QMainWindow):
 
     def User_DataTable(self):
         # Load the .ui file
-        uic.loadUi('../../User_and_Roles/Project_UserAccessControl.ui', self)
+        uic.loadUi('../../screens/Project_UserAccessControl.ui', self)
         self.setWindowTitle("User Acess Control")
 
         self.populate_users()
@@ -161,7 +161,7 @@ class USER(QtWidgets.QMainWindow):
 
     def add(self):
 
-        uic.loadUi('../../User_and_Roles/Project_NewUser.ui', self)
+        uic.loadUi('../../screens/Project_NewUser.ui', self)
         # Clear previous content if needed
         self.populate_combobox_job_roles()
         self.Done_Button.clicked.connect(self.Insert_User)
@@ -219,7 +219,7 @@ class USER(QtWidgets.QMainWindow):
         if response == QMessageBox.StandardButton.Yes:
             userid = self.UserTable.item(self.UserTable.currentRow(), 0).text()
             print(userid)
-            uic.loadUi('../../User_and_Roles/Project_NewUser.ui', self)
+            uic.loadUi('../../screens/Project_NewUser.ui', self)
             # Clear previous content if needed
             self.populate_combobox_job_roles()
             self.Done_Button.clicked.connect(lambda: self.Update_User(userid))
@@ -337,7 +337,7 @@ class USER(QtWidgets.QMainWindow):
             self.editRoleSettings()  # return to the function again
 
     def addRole(self):
-        uic.loadUi('../../User_and_Roles/Project_NewJobRole.ui', self)
+        uic.loadUi('../../screens/Project_NewJobRole.ui', self)
         # Clear previous content if needed
         self.JobTitleValue.clear()
         self.Done_Button.clicked.connect(self.addjobtitle)
@@ -356,14 +356,14 @@ class USER(QtWidgets.QMainWindow):
         if response == QMessageBox.StandardButton.Yes:
             current_val = self.JobTable.item(self.JobTable.currentRow(), 0).text()
             # print(current_val)
-            uic.loadUi('../../User_and_Roles/Project_NewJobRole.ui', self)
+            uic.loadUi('../../screens/Project_NewJobRole.ui', self)
             self.JobTitleValue.clear()
             self.Done_Button.clicked.connect(lambda: self.editjobtitle(current_val))
             self.Cancel_Button.clicked.connect(self.editRoleSettings)
 
     def editRoleSettings(self):
         #Load the .ui file
-        uic.loadUi('../../User_and_Roles/Project_EditRoleSettings.ui', self)
+        uic.loadUi('../../screens/Project_EditRoleSettings.ui', self)
 
         self.setWindowTitle("Edit Role Settings")
 

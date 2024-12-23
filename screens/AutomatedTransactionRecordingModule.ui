@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>60</y>
+      <y>70</y>
       <width>861</width>
-      <height>541</height>
+      <height>601</height>
      </rect>
     </property>
     <property name="title">
@@ -29,8 +29,8 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>23</x>
-       <y>72</y>
+       <x>10</x>
+       <y>155</y>
        <width>60</width>
        <height>16</height>
       </rect>
@@ -42,8 +42,8 @@
     <widget class="QComboBox" name="category_input">
      <property name="geometry">
       <rect>
-       <x>93</x>
-       <y>70</y>
+       <x>80</x>
+       <y>153</y>
        <width>256</width>
        <height>26</height>
       </rect>
@@ -62,8 +62,8 @@
     <widget class="QPushButton" name="view_button">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>116</y>
+       <x>4</x>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -75,8 +75,8 @@
     <widget class="QPushButton" name="add_button">
      <property name="geometry">
       <rect>
-       <x>109</x>
-       <y>116</y>
+       <x>103</x>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -88,8 +88,8 @@
     <widget class="QPushButton" name="delete_button">
      <property name="geometry">
       <rect>
-       <x>209</x>
-       <y>116</y>
+       <x>203</x>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -101,8 +101,8 @@
     <widget class="QPushButton" name="search_button">
      <property name="geometry">
       <rect>
-       <x>739</x>
-       <y>116</y>
+       <x>733</x>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -114,8 +114,8 @@
     <widget class="QTableWidget" name="transactions_table">
      <property name="geometry">
       <rect>
-       <x>16</x>
-       <y>153</y>
+       <x>10</x>
+       <y>229</y>
        <width>831</width>
        <height>321</height>
       </rect>
@@ -170,8 +170,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>366</x>
-       <y>72</y>
+       <x>353</x>
+       <y>155</y>
        <width>91</width>
        <height>16</height>
       </rect>
@@ -183,8 +183,8 @@
     <widget class="QComboBox" name="sub_category_input_2">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>70</y>
+       <x>447</x>
+       <y>153</y>
        <width>278</width>
        <height>26</height>
       </rect>
@@ -210,11 +210,119 @@
       </property>
      </item>
     </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>36</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="date_input">
+     <property name="geometry">
+      <rect>
+       <x>119</x>
+       <y>30</y>
+       <width>111</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+     <property name="currentSectionIndex">
+      <number>0</number>
+     </property>
+     <property name="date">
+      <date>
+       <year>2024</year>
+       <month>11</month>
+       <day>1</day>
+      </date>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Payment Method</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>104</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account Number</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="account_number_input">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>104</y>
+       <width>113</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>36</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="amount_input">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>36</y>
+       <width>131</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>70</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Expense Type</string>
+     </property>
+    </widget>
     <widget class="QPushButton" name="reset_button">
      <property name="geometry">
       <rect>
-       <x>637</x>
-       <y>116</y>
+       <x>631</x>
+       <y>192</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -226,8 +334,8 @@
     <widget class="QPushButton" name="close_button">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>480</y>
+       <x>4</x>
+       <y>556</y>
        <width>94</width>
        <height>32</height>
       </rect>
@@ -235,6 +343,116 @@
      <property name="text">
       <string>Close</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="payment_method_input">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>70</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cash</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Credit Card</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Debit Card</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bank Transfer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Check</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Mobile Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Wire Transfer</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="expense_type_input">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>70</y>
+       <width>131</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Office Supplies</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Product Sales</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Utilities</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Equipment Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Interest Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Service Charges</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Internet Fees</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Dividends Revenue</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Marketing Expense</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>
@@ -244,7 +462,7 @@
      <x>0</x>
      <y>0</y>
      <width>1470</width>
-     <height>36</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
