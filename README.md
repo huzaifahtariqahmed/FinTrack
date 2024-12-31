@@ -1,6 +1,8 @@
 # FinTrack: A Comprehensive Accounting Management System :money_with_wings:
 
-![Logo](/Images/Logo.png)
+<p align="center">
+  <img src="https://github.com/samiyaalizaidi/FinTrack/blob/main/Images/Logo.png" alt="Centered Image" width="300">
+</p>
 
 FinTrack is an advanced database-driven accounting system designed to streamline financial management
 processes for businesses of all sizes. The system provides a robust platform for managing financial
